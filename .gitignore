@@ -57,3 +57,6 @@ buck-out/
 
 # Jest
 .jest/
+
+android/gradle.properties
+android/app/src/main/assets/index.android.bundle
