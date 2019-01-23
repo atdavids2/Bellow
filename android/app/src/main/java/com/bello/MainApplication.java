@@ -1,4 +1,4 @@
-package com.bellow;
+package com.bello;
 
 import android.app.Application;
 
