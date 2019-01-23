@@ -1,11 +1,11 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 
-export class Contacts extends React.Component {
+export class CalendarPage extends React.Component {
   render() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Contacts!</Text>
+        <Text>Calendar!</Text>
       </View>
     );
   }

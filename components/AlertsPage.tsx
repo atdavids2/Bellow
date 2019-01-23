@@ -1,11 +1,11 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 
-export class Requests extends React.Component {
+export class AlertsPage extends React.Component {
   render() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Requests!</Text>
+        <Text>Alerts!</Text>
       </View>
     );
   }

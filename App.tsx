@@ -1,10 +1,10 @@
 import React from 'react';
 import { Platform, StyleSheet, Text, View, Button } from 'react-native';
-import { Home } from './components/Home';
-import { Requests } from './components/Requests';
-import { Calendar } from './components/Calendar';
-import { Contacts } from './components/Contacts';
-import { Alerts } from './components/Alerts';
+import { HomePage } from './components/HomePage';
+import { RequestsPage } from './components/RequestsPage';
+import { CalendarPage } from './components/CalendarPage';
+import { ContactsPage } from './components/ContactsPage';
+import { AlertsPage } from './components/AlertsPage';
 import { createBottomTabNavigator, createAppContainer, createStackNavigator } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -17,11 +17,11 @@ const instructions = Platform.select({
 
 let TabNavigator = createBottomTabNavigator(
   {
-    Home: Home,
-    Requests: Requests,
-    Calendar: Calendar,
-    Contacts: Contacts,
-    Alerts: Alerts
+    HomePage: HomePage,
+    RequestsPage: RequestsPage,
+    CalendarPage: CalendarPage,
+    ContactsPage: ContactsPage,
+    AlertsPage: AlertsPage
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -29,19 +29,19 @@ let TabNavigator = createBottomTabNavigator(
         const { routeName } = navigation.state;
         let IconComponent = Ionicons;
         let iconName;
-        if (routeName === 'Home') {
+        if (routeName === 'HomePage') {
           iconName = `ios-home`;
         }
-        else if (routeName === 'Requests') {
+        else if (routeName === 'RequestsPage') {
           iconName = 'ios-add-circle';
         }
-        else if (routeName === 'Calendar') {
+        else if (routeName === 'CalendarPage') {
           iconName = 'ios-calendar';
         }
-        else if (routeName === 'Contacts') {
+        else if (routeName === 'ContactsPage') {
           iconName = 'ios-call';
         }
-        else if (routeName === 'Alerts') {
+        else if (routeName === 'AlertsPage') {
           iconName = 'ios-warning';
         }
         return <IconComponent name={iconName} size={25} color={tintColor} />;
