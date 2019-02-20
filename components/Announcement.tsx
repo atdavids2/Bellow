@@ -1,30 +1,33 @@
 import React from 'react';
-import { Text, View} from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 import { Divider } from 'react-native-elements';
 import { Announcement } from '../models/Announcement';
 import { Styles } from './styles';
 
-export interface Props {
+export interface AnnouncementProps {
   announcement: Announcement;
+  onAnnouncementPress: (announcement: Announcement) => void;
 }
 
-interface State {
-  enthusiasmLevel: number;
-}
-
-export class AnnouncementDetails extends React.Component<Props, State> {
-  constructor(props: Props) {
+export class AnnouncementDetails extends React.Component<AnnouncementProps> {
+  constructor(props: AnnouncementProps) {
     super(props);
   }
 
   render() {
+    const { onAnnouncementPress, announcement } = this.props;
+
     return (
       <View>
-        <View style={[ Styles.horizontalMargin, Styles.rowFlex, Styles.dividerTopMargin ]}>
-          <Text>{ this.props.announcement.Subject }</Text>
-          <Text style={[ Styles.leftMarginAuto, Styles.horizontalMargin ]}>{ this.props.announcement.Date }</Text>
-        </View>
-        <Text style={ Styles.horizontalMargin }>{ this.props.announcement.Details }</Text>
+        <TouchableOpacity onPress={() => onAnnouncementPress(announcement)}>
+          <View>
+            <View style={[ Styles.horizontalMargin, Styles.rowFlex ]}>
+              <Text>{ announcement.Subject }</Text>
+              <Text style={[ Styles.leftMarginAuto, Styles.horizontalMargin ]}>{ announcement.Date }</Text>
+            </View>
+            <Text style={ Styles.horizontalMargin }>{ announcement.Details }</Text>
+          </View>
+        </TouchableOpacity>
         <Divider style={ Styles.dividerMargin }/>
       </View>
     );

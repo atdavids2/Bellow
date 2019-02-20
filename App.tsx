@@ -1,27 +1,24 @@
 import React from 'react';
-import { Platform, StyleSheet, Text, View, Button } from 'react-native';
-import { HomePage } from './components/HomePage';
-import { RequestsPage } from './components/RequestsPage';
-import { CalendarPage } from './components/CalendarPage';
-import { ContactsPage } from './components/ContactsPage';
-import { AlertsPage } from './components/AlertsPage';
+import { HomePage, HomePageProps } from './pages/HomePage';
+import { RequestsPage, RequestsPageProps } from './pages/RequestsPage';
+import { CalendarPage, CalendarPageProps } from './pages/CalendarPage';
+import { ContactsPage, ContactsPageProps } from './pages/ContactsPage';
+import { AlertsPage, AlertsPageProps } from './pages/AlertsPage';
+import { AnnouncementDetailsPage } from './pages/AnnouncementDetailsPage';
+import { IDataProvider } from './data/IDataProvider';
+import { MockDataProvider } from './data/MockDataProvider';
 import { createBottomTabNavigator, createAppContainer, createStackNavigator } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+let dataProvider: IDataProvider = new MockDataProvider();
 
 let TabNavigator = createBottomTabNavigator(
   {
-    HomePage: HomePage,
-    RequestsPage: RequestsPage,
-    CalendarPage: CalendarPage,
-    ContactsPage: ContactsPage,
-    AlertsPage: AlertsPage
+    HomePage: (props: HomePageProps) => <HomePage {...props} dataProvider={dataProvider} />,
+    RequestsPage: (props: RequestsPageProps) => <RequestsPage {...props} dataProvider={dataProvider} />,
+    CalendarPage: (props: CalendarPageProps) => <CalendarPage {...props} dataProvider={dataProvider} />,
+    ContactsPage: (props: ContactsPageProps) => <ContactsPage {...props} dataProvider={dataProvider} />,
+    AlertsPage: (props: AlertsPageProps) => <AlertsPage {...props} dataProvider={dataProvider} />
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -60,7 +57,13 @@ let TabNavigator = createBottomTabNavigator(
 
 let AppNavigator = createStackNavigator(
   {
-    Tabs: TabNavigator
+    Tabs: TabNavigator,
+    HomePage: (props: HomePageProps) => <HomePage {...props} dataProvider={dataProvider} />,
+    RequestsPage: (props: RequestsPageProps) => <RequestsPage {...props} dataProvider={dataProvider} />,
+    CalendarPage: (props: CalendarPageProps) => <CalendarPage {...props} dataProvider={dataProvider} />,
+    ContactsPage: (props: ContactsPageProps) => <ContactsPage {...props} dataProvider={dataProvider} />,
+    AlertsPage: (props: AlertsPageProps) => <AlertsPage {...props} dataProvider={dataProvider} />,
+    AnnouncementDetailsPage: AnnouncementDetailsPage
   },
   {
     defaultNavigationOptions: {
