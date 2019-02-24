@@ -61,9 +61,9 @@ export class HomePage extends React.Component<HomePageProps & NavigationInjected
 
     return (
       <View style={[ Styles.appPageStyle ]}>
-        <Text style={[ Styles.largeFont, Styles.appHorizontalMargin ]}>Announcements:</Text>
+        <Text style={[ Styles.largeFont, Styles.appHorizontalMargin ]}>Announcements</Text>
         <Divider style={ Styles.dividerMargin }/>
-        <ScrollView style={ Styles.announcementsScrollView }>
+        <ScrollView style={ Styles.scrollView }>
           {announcementList}
         </ScrollView>
         <View style={ Styles.surveyButton }>

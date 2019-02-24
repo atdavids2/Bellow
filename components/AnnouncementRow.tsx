@@ -21,11 +21,11 @@ export class AnnouncementRow extends React.Component<AnnouncementRowProps> {
       <View >
         <TouchableOpacity onPress={() => onAnnouncementPress(announcement)}>
           <View style={Styles.appHorizontalMargin}>
-            <View style={[ Styles.rowFlex ]}>
+            <View style={ Styles.rowFlex }>
               <Text>{ announcement.Subject }</Text>
               <Text style={[ Styles.leftMarginAuto ]}>{ announcement.Date }</Text>
             </View>
-            <Text style={[ Styles.announcementDetailsHeight ]}>{ announcement.Details }</Text>
+            <Text style={ Styles.announcementDetailsHeight }>{ announcement.Details }</Text>
           </View>
         </TouchableOpacity>
         <Divider style={ Styles.dividerMargin }/>

@@ -68,7 +68,7 @@ let AppNavigator = createStackNavigator(
   },
   {
     defaultNavigationOptions: {
-      title: 'Chicago',
+      headerTitle: 'Chicago',
       headerStyle: {
         backgroundColor: appMainColor
       },
@@ -78,6 +78,9 @@ let AppNavigator = createStackNavigator(
         textAlign: 'center',
         flex: 1
       },
+      headerTitleContainerStyle: {
+        left: 0
+      }
     }
   }
 );

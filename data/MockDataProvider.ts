@@ -1,5 +1,6 @@
-import { Announcement } from '../models/Announcement'
-import { IDataProvider } from './IDataProvider'
+import { Announcement } from '../models/Announcement';
+import { Alert, AlertType } from '../models/Alert';
+import { IDataProvider } from './IDataProvider';
 
 export class MockDataProvider implements IDataProvider {
     
@@ -29,5 +30,45 @@ export class MockDataProvider implements IDataProvider {
 
     getSurveyLink(): string {
         return 'https://www.google.com';
+    }
+
+    getAlerts(): Alert[] {
+        let alerts: Alert[] = [{
+            Id: 1,
+            Topic: 'School closure',
+            Type: AlertType.School,
+            Date: 'Friday March 13th',
+            Description: 'One of the students won the lottery! He\'s renting out the building to host a Friday the 13th scary movie party! Hopefully you were invited.'
+        },
+        {
+            Id: 2,
+            Topic: 'Blind birds are flying into windows',
+            Type: AlertType.Emergency,
+            Date: 'Feb 9th',
+            Description: 'Our large population of blind crows are flying into houses. Make sure you keep your windows closed! If they do get into your home, call the authorities immediately. They are mostly rabid.'
+        },
+        {
+            Id: 3,
+            Topic: 'Slam dunk contest',
+            Type: AlertType.ParksAndRec,
+            Date: 'Jan 27th, 2020',
+            Description: 'The parks department is hosting Jimmer Fridette in a dunk contest.\nThe winner gets $5000!\nIf you can dunk on an 8ft rim then you have a chance, so don\'t miss out!'
+        },
+        {
+            Id: 4,
+            Topic: 'Massive pileup on Route 4',
+            Type: AlertType.Traffic | AlertType.Emergency,
+            Date: 'Feb 23rd, 2019',
+            Description: 'No one is hurt but yikes this is a bad crash. Come see the destruction!'
+        },
+        {
+            Id: 5,
+            Topic: 'Mayor Keith up for re-election',
+            Type: AlertType.Voting,
+            Date: 'Nov 8, 2020',
+            Description: 'The best mayor in the history of Orland needs our support! Early voting starts in 18 months.'
+        }];
+        alerts = alerts.concat(alerts);
+        return alerts;
     }
 }
