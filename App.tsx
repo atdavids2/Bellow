@@ -7,14 +7,15 @@ import { AlertsPage, AlertsPageProps } from './pages/AlertsPage';
 import { AnnouncementDetailsPage } from './pages/AnnouncementDetailsPage';
 import { IDataProvider } from './data/IDataProvider';
 import { MockDataProvider } from './data/MockDataProvider';
-import { createBottomTabNavigator, createAppContainer, createStackNavigator } from 'react-navigation';
+import { appMainColor, whiteColor, grayColor } from './styles';
+import { createBottomTabNavigator, createAppContainer, createStackNavigator, NavigationInjectedProps } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 let dataProvider: IDataProvider = new MockDataProvider();
 
 let TabNavigator = createBottomTabNavigator(
   {
-    HomePage: (props: HomePageProps) => <HomePage {...props} dataProvider={dataProvider} />,
+    HomePage: (props: HomePageProps & NavigationInjectedProps) => <HomePage {...props} dataProvider={dataProvider} />,
     RequestsPage: (props: RequestsPageProps) => <RequestsPage {...props} dataProvider={dataProvider} />,
     CalendarPage: (props: CalendarPageProps) => <CalendarPage {...props} dataProvider={dataProvider} />,
     ContactsPage: (props: ContactsPageProps) => <ContactsPage {...props} dataProvider={dataProvider} />,
@@ -22,10 +23,10 @@ let TabNavigator = createBottomTabNavigator(
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused, horizontal, tintColor }) => {
+      tabBarIcon: ({ tintColor} : { tintColor: string }) => {
         const { routeName } = navigation.state;
         let IconComponent = Ionicons;
-        let iconName;
+        let iconName: string = '';
         if (routeName === 'HomePage') {
           iconName = `ios-home`;
         }
@@ -45,11 +46,11 @@ let TabNavigator = createBottomTabNavigator(
       }
     }),
     tabBarOptions: {
-      activeTintColor: '#fff',
-      inactiveTintColor: 'gray',
+      activeTintColor: whiteColor,
+      inactiveTintColor: grayColor,
       showLabel: false,
       style: {
-        backgroundColor: '#f4511e'
+        backgroundColor: appMainColor
       }
     },
   }
@@ -58,7 +59,7 @@ let TabNavigator = createBottomTabNavigator(
 let AppNavigator = createStackNavigator(
   {
     Tabs: TabNavigator,
-    HomePage: (props: HomePageProps) => <HomePage {...props} dataProvider={dataProvider} />,
+    HomePage: (props: HomePageProps & NavigationInjectedProps) => <HomePage {...props} dataProvider={dataProvider} />,
     RequestsPage: (props: RequestsPageProps) => <RequestsPage {...props} dataProvider={dataProvider} />,
     CalendarPage: (props: CalendarPageProps) => <CalendarPage {...props} dataProvider={dataProvider} />,
     ContactsPage: (props: ContactsPageProps) => <ContactsPage {...props} dataProvider={dataProvider} />,
@@ -69,9 +70,9 @@ let AppNavigator = createStackNavigator(
     defaultNavigationOptions: {
       title: 'Chicago',
       headerStyle: {
-        backgroundColor: '#f4511e'
+        backgroundColor: appMainColor
       },
-      headerTintColor: '#fff',
+      headerTintColor: whiteColor,
       headerTitleStyle: {
         fontWeight: 'bold',
         textAlign: 'center',

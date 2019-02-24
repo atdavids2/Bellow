@@ -1,10 +1,11 @@
 import React from 'react';
-import { Text, View, ScrollView } from 'react-native';
+import { Text, View, ScrollView, Button, Linking } from 'react-native';
 import { Divider } from 'react-native-elements';
 import { Announcement } from '../models/Announcement';
 import { IDataProvider } from '../data/IDataProvider';
-import { AnnouncementDetails } from '../components/Announcement';
-import { Styles } from '../components/styles';
+import { AnnouncementRow } from '../components/AnnouncementRow';
+import { Styles, appMainColor } from '../styles';
+import { NavigationInjectedProps } from 'react-navigation';
 
 export interface HomePageProps {
   dataProvider: IDataProvider;
@@ -12,24 +13,18 @@ export interface HomePageProps {
 
 interface HomePageState {
   announcements: Announcement[];
-  seeMoreSelected: boolean;
+  surveyLink: string;
 }
 
-export class HomePage extends React.Component<HomePageProps, HomePageState> {
+export class HomePage extends React.Component<HomePageProps & NavigationInjectedProps, HomePageState> {
 
-  constructor(props: HomePageProps) {
+  constructor(props: HomePageProps & NavigationInjectedProps) {
     super(props);
 
     this.state = {
       announcements: [],
-      seeMoreSelected: false
+      surveyLink: ''
     };
-  }
-
-  onSeeMorePressed = () => {
-    this.setState({
-      seeMoreSelected: true
-    });
   }
 
   onAnnouncementPress = (announcement: Announcement) => {
@@ -38,32 +33,45 @@ export class HomePage extends React.Component<HomePageProps, HomePageState> {
     });
   }
 
+  openSurvey = () => {
+    const { surveyLink } = this.state;
+    Linking.canOpenURL(surveyLink).then(supported => {
+      if (supported) {
+        Linking.openURL(surveyLink);
+      }
+    });
+  }
+
   componentWillMount() {
     const { dataProvider } = this.props;
 
     this.setState({
-      announcements: dataProvider.getAnnouncements()
+      announcements: dataProvider.getAnnouncements(),
+      surveyLink: dataProvider.getSurveyLink()
     });
   }
 
   render() {
     const { announcements } = this.state;
-    let announcementList = announcements.slice(0, 6).map(a => <AnnouncementDetails
+    let announcementList = announcements.map(a => <AnnouncementRow
       key={a.Id}
       announcement={a}
       onAnnouncementPress={this.onAnnouncementPress}
     />);
 
     return (
-      <View style={[ Styles.largeTopMargin, Styles.appBottomMargin ]}>
-        <Text style={[ Styles.largeFont, Styles.horizontalMargin ]}>Announcements:</Text>
+      <View style={[ Styles.appPageStyle ]}>
+        <Text style={[ Styles.largeFont, Styles.appHorizontalMargin ]}>Announcements:</Text>
         <Divider style={ Styles.dividerMargin }/>
-        <ScrollView>
+        <ScrollView style={ Styles.announcementsScrollView }>
           {announcementList}
         </ScrollView>
-        {/*<Button
-          onPress={this.onSeeMorePressed}
-        title="See more" />*/}
+        <View style={ Styles.surveyButton }>
+          <Button
+            onPress={this.openSurvey}
+            title='Take Community Survey'
+            color={appMainColor} />
+        </View>
       </View>
     );
   }
