@@ -1,8 +1,18 @@
 import { Announcement } from '../models/Announcement';
 import { Alert, AlertType } from '../models/Alert';
+import { UserProfile } from '../models/UserProfile';
 import { IDataProvider } from './IDataProvider';
 
 export class MockDataProvider implements IDataProvider {
+
+    userProfile: UserProfile = {
+        Name: "Bryan Ryan O'Brien",
+        Email: "throwawayacat@gmail.com",
+        Hometown: "Chicago",
+        Addresses: "",
+        OtherHometowns: "",
+        NotificationSettings: { 1: true, 2: false, 4: true, 8: false, 16: false }
+    };
     
     getAnnouncements(): Announcement[] {
         let announcements: Announcement[] = [{
@@ -70,5 +80,13 @@ export class MockDataProvider implements IDataProvider {
         }];
         alerts = alerts.concat(alerts);
         return alerts;
+    }
+
+    getUserProfile(): UserProfile {
+        return this.userProfile;
+    }
+
+    toggleNotificationSetting(alertType: AlertType) {
+        this.userProfile.NotificationSettings[alertType] = !this.userProfile.NotificationSettings[alertType];
     }
 }

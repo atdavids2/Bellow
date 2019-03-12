@@ -5,11 +5,13 @@ import { CalendarPage, CalendarPageProps } from './pages/CalendarPage';
 import { ContactsPage, ContactsPageProps } from './pages/ContactsPage';
 import { AlertsPage, AlertsPageProps } from './pages/AlertsPage';
 import { AnnouncementDetailsPage } from './pages/AnnouncementDetailsPage';
+import { ProfileSettingsPage, ProfileSettingsPageProps } from './pages/ProfileSettingsPage';
 import { IDataProvider } from './data/IDataProvider';
 import { MockDataProvider } from './data/MockDataProvider';
-import { appMainColor, whiteColor, grayColor } from './styles';
+import { Styles, appMainColor, whiteColor, grayColor } from './styles';
 import { createBottomTabNavigator, createAppContainer, createStackNavigator, NavigationInjectedProps } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { TouchableOpacity } from 'react-native';
 
 let dataProvider: IDataProvider = new MockDataProvider();
 
@@ -64,11 +66,17 @@ let AppNavigator = createStackNavigator(
     CalendarPage: (props: CalendarPageProps) => <CalendarPage {...props} dataProvider={dataProvider} />,
     ContactsPage: (props: ContactsPageProps) => <ContactsPage {...props} dataProvider={dataProvider} />,
     AlertsPage: (props: AlertsPageProps) => <AlertsPage {...props} dataProvider={dataProvider} />,
-    AnnouncementDetailsPage: AnnouncementDetailsPage
+    AnnouncementDetailsPage: AnnouncementDetailsPage,
+    ProfileSettingsPage: (props: ProfileSettingsPageProps) => <ProfileSettingsPage {...props} dataProvider={dataProvider} />
   },
   {
-    defaultNavigationOptions: {
+    defaultNavigationOptions : ({ navigation }) => ({
       headerTitle: 'Chicago',
+      headerRight: (
+        <TouchableOpacity onPress={() => { navigation.navigate('ProfileSettingsPage')}}>
+          <Ionicons name="ios-contact" size={50} style={Styles.profileSettingsButton} />
+        </TouchableOpacity>
+      ),
       headerStyle: {
         backgroundColor: appMainColor
       },
@@ -79,9 +87,10 @@ let AppNavigator = createStackNavigator(
         flex: 1
       },
       headerTitleContainerStyle: {
-        left: 0
+        left: 0,
+        right: 0
       }
-    }
+    })
   }
 );
 
