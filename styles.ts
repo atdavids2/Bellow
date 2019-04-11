@@ -30,6 +30,10 @@ export const Styles = StyleSheet.create({
   leftMarginAuto: {
     marginLeft: 'auto'
   },
+  smallDividerMargin: {
+    marginTop: 5,
+    marginBottom: 5
+  },
   dividerMargin: {
     marginTop: 10,
     marginBottom: 10
@@ -58,7 +62,8 @@ export const Styles = StyleSheet.create({
     width: 7,
     borderRadius: 7,
     marginLeft: 1,
-    marginRight: 1
+    marginRight: 1,
+    alignSelf: 'center'
   },
   alertIndicatorSection: {
     alignSelf: 'center',
@@ -68,5 +73,24 @@ export const Styles = StyleSheet.create({
   },
   alertDetailsSection: {
     marginRight: 40
+  },
+  profileSettingsButton: {
+    marginEnd: 10,
+    color: whiteColor
+  },
+  justifyStart: {
+    justifyContent: 'flex-start'
+  },
+  notificationSettings: {
+    justifyContent: 'space-between',
+    height: 30
+  },
+  centeredRow: {
+    alignSelf: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row'
+  },
+  justifySpace: {
+    justifyContent: 'space-between'
   }
 });
