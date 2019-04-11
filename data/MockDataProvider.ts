@@ -1,6 +1,7 @@
 import { Announcement } from '../models/Announcement';
 import { Alert, AlertType } from '../models/Alert';
 import { UserProfile } from '../models/UserProfile';
+import { Event, EventType } from '../models/Event';
 import { IDataProvider } from './IDataProvider';
 
 export class MockDataProvider implements IDataProvider {
@@ -9,7 +10,7 @@ export class MockDataProvider implements IDataProvider {
         Name: "Bryan Ryan O'Brien",
         Email: "throwawayacat@gmail.com",
         Hometown: "Chicago",
-        Addresses: "",
+        Addresses: "123 Drury Lane, Far Far Away",
         OtherHometowns: "",
         NotificationSettings: { 1: true, 2: false, 4: true, 8: false, 16: false }
     };
@@ -88,5 +89,43 @@ export class MockDataProvider implements IDataProvider {
 
     toggleNotificationSetting(alertType: AlertType) {
         this.userProfile.NotificationSettings[alertType] = !this.userProfile.NotificationSettings[alertType];
+    }
+
+    getEvents(): Event[] {
+        var today = new Date();
+        var tomorrow = new Date();
+        tomorrow.setDate(today.getDate()+1);
+        var yesterday = new Date();
+        yesterday.setDate(today.getDate()-1);
+
+        let events: Event[] = [{
+            Id: 1,
+            Name: 'Board meeting',
+            Type: EventType.Political | EventType.School,
+            Date: today,
+            Description: 'We will be discussing the merits of creating a large scale petting zoo on our high school grounds over summer break.\nWe already have a generous donation from Farmer Bill of 7 zebras and 2 giraffes!\nJoin us in Conf Room A in Buidling 23 at 6 PM today to voice your opinion.'
+        },
+        {
+            Id: 2,
+            Name: 'Ice cream social',
+            Type: EventType.Recreation,
+            Date: tomorrow,
+            Description: 'Politics over People will be hosting an ice cream social at 9 AM tomorrow.\nIf you don\'t like coconut ice cream don\'t bother coming because we will not be supplying any other flavors.\nLocation to be announced 15 minutes before the start of the event so stay tuned!'
+        },
+        {
+            Id: 3,
+            Name: 'Apiculture career fair',
+            Type: EventType.CareerServices,
+            Date: yesterday,
+            Description: 'The apiculture society is hosting a career fair at the middle school. Come all bee lovers!'
+        },
+        {
+            Id: 4,
+            Name: 'Reading moms volunteering opportunities',
+            Type: EventType.Volunteering | EventType.School,
+            Date: today,
+            Description: 'Our first grade students have finally surpassed Ms Rachel\'s reading abilities. We need volunteer moms (please no dads) to come read to the children.\nEmail Ms Rachel (msRachel@email.com) with any inquiries or if you would like to help out.\nPlease keep emails to a first grade or lower reading level or she will not respond.'
+        }];
+        return events;
     }
 }
