@@ -8,7 +8,7 @@ import { AnnouncementDetailsPage } from './pages/AnnouncementDetailsPage';
 import { ProfileSettingsPage, ProfileSettingsPageProps } from './pages/ProfileSettingsPage';
 import { IDataProvider } from './data/IDataProvider';
 import { MockDataProvider } from './data/MockDataProvider';
-import { Styles, appMainColor, whiteColor, grayColor } from './styles';
+import { Styles, appMainColor, whiteColor, grayColor } from './Styles';
 import { createBottomTabNavigator, createAppContainer, createStackNavigator, NavigationInjectedProps } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { TouchableOpacity } from 'react-native';

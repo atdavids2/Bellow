@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { AlertType } from './models/Alert';
 import { EventType } from './models/Event';
+import { TabBarBottom } from 'react-navigation';
 
 export const appMainColor: string = '#f4511e';
 export const whiteColor: string = '#fff';
@@ -119,14 +120,17 @@ export const calendarTheme = {
   selectedDayBackgroundColor: appMainColor,
   selectedDayTextColor: 'white',
   todayTextColor: appMainColor,
-  'stylesheet.day.basic': {
+  'stylesheet.day.multiDot': {
     'base': {
-      width:32,
-      height:15,
+      width:25,
+      height:22,
       alignItems: 'center'
     },
     'selectedText': {
       color: 'white'
+    },
+    'text': {
+      marginTop: 1.5
     }
   },
   'stylesheet.calendar.header': {

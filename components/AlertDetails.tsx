@@ -2,7 +2,8 @@ import React from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { Divider } from 'react-native-elements';
 import { Alert, AlertType } from '../models/Alert';
-import { Styles, getAlertColor } from '../styles';
+import { Styles, getAlertColor } from '../Styles';
+import { formateDateToFullString } from '../Utilities';
 
 export interface AlertDetailsProps {
   alert: Alert;
@@ -48,7 +49,7 @@ export class AlertDetails extends React.Component<AlertDetailsProps, AlertDetail
               <View style={[ Styles.columnFlex, Styles.alertDetailsSection ]}>
                 <View style={ Styles.rowFlex }>
                   <Text>{ alert.Topic }</Text>
-                  <Text style={[ Styles.leftMarginAuto ]}>{ alert.Date }</Text>
+                  <Text style={[ Styles.leftMarginAuto ]}>{ formateDateToFullString(alert.Date) }</Text>
                 </View>
                 <Text style={ isDescriptionExpanded ? null: Styles.announcementDetailsHeight }>{ alert.Description }</Text>
               </View>

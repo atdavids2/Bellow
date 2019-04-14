@@ -11,6 +11,6 @@ export interface Alert {
     Id: number;
     Topic: string;
     Type: AlertType;
-    Date: string;
+    Date: Date;
     Description: string;
 }

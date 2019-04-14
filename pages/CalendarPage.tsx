@@ -3,9 +3,9 @@ import { View, ScrollView, Text } from 'react-native';
 import { Divider } from 'react-native-elements';
 import { Calendar, DateObject } from 'react-native-calendars';
 import { IDataProvider } from '../data/IDataProvider';
-import { Event } from '../models/Event';
+import { Event, EventType } from '../models/Event';
 import { EventDetails } from '../components/EventDetails';
-import { Styles, calendarTheme } from '../styles';
+import { Styles, calendarTheme, getEventColor } from '../Styles';
 
 export interface CalendarPageProps {
   dataProvider: IDataProvider;
@@ -14,7 +14,8 @@ export interface CalendarPageProps {
 interface CalendarPageState {
   events: Event[],
   selectedDate: Date,
-  markedDates: any
+  markedDates: any,
+  eventDates: any
 };
 
 export class CalendarPage extends React.Component<CalendarPageProps, CalendarPageState> {
@@ -22,35 +23,77 @@ export class CalendarPage extends React.Component<CalendarPageProps, CalendarPag
   constructor(props: CalendarPageProps) {
     super(props);
     let today: Date = new Date();
-    let month = '' + (today.getMonth() + 1);
-    let day = '' + today.getDate();
-    let year = today.getFullYear();
-
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
-
-    let dateStr = [year, month, day].join('-');
 
     this.state = {
       events: [],
       selectedDate: today,
-      markedDates: {[dateStr]: {selected: true}}
+      markedDates: {[this.convertDateToDateObject(today)]: {selected: true}},
+      eventDates: null
     };
   }
 
   onDaySelected = (day: DateObject) => {
+    const { eventDates } = this.state;
 
     this.setState({
       selectedDate: new Date(day.year, day.month-1, day.day),
-      markedDates: {[day.dateString]: {selected: true}}
+      markedDates: {...eventDates, [day.dateString]: {selected: true}}
     });
+  }
+
+  convertDateToDateObject = (date: Date) => {
+    let month = '' + (date.getMonth() + 1);
+    let day = '' + date.getDate();
+    let year = date.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
   }
 
   componentWillMount() {
     const { dataProvider } = this.props;
+    const { markedDates } = this.state;
+
+    let events: Event[] = dataProvider.getEvents();
+
+    const political = {key: 'political', color: getEventColor(EventType.Political)};
+    const recreation = {key: 'recreation', color: getEventColor(EventType.Recreation)};
+    const school = {key: 'school', color: getEventColor(EventType.School)};
+    const careerServices = {key: 'careerServices', color: getEventColor(EventType.CareerServices)};
+    const volunteering = {key: 'volunteering', color: getEventColor(EventType.Volunteering)};
+
+    let eventDates: any = {};
+    for (let event of events) {
+      let dateStr = this.convertDateToDateObject(event.Date);
+      let dotArray = [];
+      if (eventDates[dateStr]) {
+        dotArray = eventDates[dateStr].dots;
+      }
+
+      if (event.Type & EventType.Political) {
+        dotArray.push(political);
+      }
+      if (event.Type & EventType.Recreation) {
+        dotArray.push(recreation);
+      }
+      if (event.Type & EventType.School) {
+        dotArray.push(school);
+      }
+      if (event.Type & EventType.CareerServices) {
+        dotArray.push(careerServices);
+      }
+      if (event.Type & EventType.Volunteering) {
+        dotArray.push(volunteering);
+      }
+      eventDates[dateStr] = {dots: dotArray};
+    }
 
     this.setState({
-      events: dataProvider.getEvents()
+      events: events,
+      eventDates: eventDates,
+      markedDates: {...eventDates, ...markedDates}
     });
   }
   
@@ -75,6 +118,7 @@ export class CalendarPage extends React.Component<CalendarPageProps, CalendarPag
           theme={ calendarTheme }
           current={selectedDate}
           markedDates={markedDates}
+          markingType={'multi-dot'}
           onDayPress={(day) => this.onDaySelected(day)} />
         <Divider style={ Styles.dividerMargin }/>
         <Text style={[ Styles.appHorizontalMargin, Styles.mediumFont ]}>{selectedDate.toDateString()}</Text>

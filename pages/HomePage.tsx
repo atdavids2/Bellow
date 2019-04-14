@@ -4,7 +4,7 @@ import { Divider } from 'react-native-elements';
 import { Announcement } from '../models/Announcement';
 import { IDataProvider } from '../data/IDataProvider';
 import { AnnouncementRow } from '../components/AnnouncementRow';
-import { Styles, appMainColor } from '../styles';
+import { Styles, appMainColor } from '../Styles';
 import { NavigationInjectedProps } from 'react-navigation';
 
 export interface HomePageProps {
