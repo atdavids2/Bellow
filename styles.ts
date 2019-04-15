@@ -34,6 +34,10 @@ export const Styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column'
   },
+  contactsScrollView: {
+    flex: 1,
+    flexDirection: 'column'
+  },
   surveyButton: {
     maxWidth: '50%',
     alignSelf: 'center'

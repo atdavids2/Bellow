@@ -1,5 +1,7 @@
 import { Announcement } from '../models/Announcement'
+import { Contact } from '../models/Contact'
 import { IDataProvider } from './IDataProvider'
+
 
 export class MockDataProvider implements IDataProvider {
     
@@ -29,5 +31,38 @@ export class MockDataProvider implements IDataProvider {
 
     getSurveyLink(): string {
         return 'https://www.google.com';
+    }
+
+    getContacts(): Contact[] {
+        let contacts: Contact[] = [{
+            Id: 1,
+            Type: 1,
+            Name: 'Anthony Weiner',
+            Role: 'US Senate Representative',
+            RoleDescription: 'My job is to make sure that our citizens views are represented in the US Senate.',
+            PhoneNumber: '1-800-244-3485',
+            EmailAddress: 'big.weiner@ussenate.gov'
+        },
+        {
+            Id: 2,
+            Type: 2,
+            Name: 'Keith Pekau',
+            Role: 'Mayor',
+            RoleDescription: 'My job is to golf all day.',
+            PhoneNumber: '1-800-123-4567',
+            EmailAddress: 'bigKeithDaBest@gmail.com'
+        },
+        {
+            Id: 3,
+            Type: 3,
+            Name: 'Jim Morris',
+            Role: 'Chicago High School Principal',
+            RoleDescription: 'My job is to smack kids who are acting up',
+            PhoneNumber: '1-800-999-9999',
+            EmailAddress: 'j.morris@chicagoschools.com'
+        }];
+        contacts = contacts.concat(contacts);
+        contacts = contacts.concat(contacts);
+        return contacts;
     }
 }

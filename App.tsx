@@ -10,6 +10,7 @@ import { MockDataProvider } from './data/MockDataProvider';
 import { appMainColor, whiteColor, grayColor } from './styles';
 import { createBottomTabNavigator, createAppContainer, createStackNavigator, NavigationInjectedProps } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { ContactDetailsPage } from './pages/ContactDetailsPage';
 
 let dataProvider: IDataProvider = new MockDataProvider();
 
@@ -18,7 +19,7 @@ let TabNavigator = createBottomTabNavigator(
     HomePage: (props: HomePageProps & NavigationInjectedProps) => <HomePage {...props} dataProvider={dataProvider} />,
     RequestsPage: (props: RequestsPageProps) => <RequestsPage {...props} dataProvider={dataProvider} />,
     CalendarPage: (props: CalendarPageProps) => <CalendarPage {...props} dataProvider={dataProvider} />,
-    ContactsPage: (props: ContactsPageProps) => <ContactsPage {...props} dataProvider={dataProvider} />,
+    ContactsPage: (props: ContactsPageProps & NavigationInjectedProps) => <ContactsPage {...props} dataProvider={dataProvider} />,
     AlertsPage: (props: AlertsPageProps) => <AlertsPage {...props} dataProvider={dataProvider} />
   },
   {
@@ -62,9 +63,10 @@ let AppNavigator = createStackNavigator(
     HomePage: (props: HomePageProps & NavigationInjectedProps) => <HomePage {...props} dataProvider={dataProvider} />,
     RequestsPage: (props: RequestsPageProps) => <RequestsPage {...props} dataProvider={dataProvider} />,
     CalendarPage: (props: CalendarPageProps) => <CalendarPage {...props} dataProvider={dataProvider} />,
-    ContactsPage: (props: ContactsPageProps) => <ContactsPage {...props} dataProvider={dataProvider} />,
+    ContactsPage: (props: ContactsPageProps & NavigationInjectedProps) => <ContactsPage {...props} dataProvider={dataProvider} />,
     AlertsPage: (props: AlertsPageProps) => <AlertsPage {...props} dataProvider={dataProvider} />,
-    AnnouncementDetailsPage: AnnouncementDetailsPage
+    AnnouncementDetailsPage: AnnouncementDetailsPage,
+    ContactDetailsPage: ContactDetailsPage
   },
   {
     defaultNavigationOptions: {
