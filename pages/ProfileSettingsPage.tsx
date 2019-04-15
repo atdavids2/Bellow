@@ -4,7 +4,7 @@ import { Divider } from 'react-native-elements';
 import { IDataProvider } from '../data/IDataProvider';
 import { UserProfile } from '../models/UserProfile';
 import { AlertType } from '../models/Alert';
-import { Styles, getAlertColor } from '../styles';
+import { Styles, getAlertColor } from '../Styles';
 
 export interface ProfileSettingsPageProps {
   dataProvider: IDataProvider;

@@ -2,9 +2,9 @@ import React from 'react';
 import { Text, View, ScrollView } from 'react-native';
 import { Divider } from 'react-native-elements';
 import { IDataProvider } from '../data/IDataProvider';
-import { Alert, AlertType } from '../models/Alert';
+import { Alert } from '../models/Alert';
 import { AlertDetails } from '../components/AlertDetails';
-import { Styles } from '../styles';
+import { Styles } from '../Styles';
 
 export interface AlertsPageProps {
   dataProvider: IDataProvider;
