@@ -1,16 +1,51 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, ScrollView } from 'react-native';
+import { Divider } from 'react-native-elements';
 import { IDataProvider } from '../data/IDataProvider';
+import { Alert } from '../models/Alert';
+import { AlertDetails } from '../components/AlertDetails';
+import { Styles } from '../Styles';
 
 export interface AlertsPageProps {
   dataProvider: IDataProvider;
 }
 
-export class AlertsPage extends React.Component<AlertsPageProps> {
+interface AlertsPageState {
+  alerts: Alert[];
+}
+
+export class AlertsPage extends React.Component<AlertsPageProps, AlertsPageState> {
+
+  constructor(props: AlertsPageProps) {
+    super(props);
+
+    this.state = {
+      alerts: []
+    };
+  }
+
+  componentWillMount() {
+    const { dataProvider } = this.props;
+
+    this.setState({
+      alerts: dataProvider.getAlerts()
+    });
+  }
+
   render() {
+    const { alerts } = this.state;
+    let alertList = alerts.map(a => <AlertDetails
+      key={a.Id}
+      alert={a}
+    />);
+
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Alerts!</Text>
+      <View style={[ Styles.appPageStyle ]}>
+        <Text style={[ Styles.largeFont, Styles.appHorizontalMargin ]}>Alerts</Text>
+        <Divider style={ Styles.dividerMargin }/>
+        <ScrollView style={ Styles.scrollView }>
+          {alertList}
+        </ScrollView>
       </View>
     );
   }

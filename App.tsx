@@ -5,12 +5,14 @@ import { CalendarPage, CalendarPageProps } from './pages/CalendarPage';
 import { ContactsPage, ContactsPageProps } from './pages/ContactsPage';
 import { AlertsPage, AlertsPageProps } from './pages/AlertsPage';
 import { AnnouncementDetailsPage } from './pages/AnnouncementDetailsPage';
+import { ProfileSettingsPage, ProfileSettingsPageProps } from './pages/ProfileSettingsPage';
 import { IDataProvider } from './data/IDataProvider';
 import { MockDataProvider } from './data/MockDataProvider';
-import { appMainColor, whiteColor, grayColor } from './styles';
+import { Styles, appMainColor, whiteColor, grayColor } from './Styles';
 import { createBottomTabNavigator, createAppContainer, createStackNavigator, NavigationInjectedProps } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { ContactDetailsPage } from './pages/ContactDetailsPage';
+import { TouchableOpacity } from 'react-native';
 
 let dataProvider: IDataProvider = new MockDataProvider();
 
@@ -66,11 +68,17 @@ let AppNavigator = createStackNavigator(
     ContactsPage: (props: ContactsPageProps & NavigationInjectedProps) => <ContactsPage {...props} dataProvider={dataProvider} />,
     AlertsPage: (props: AlertsPageProps) => <AlertsPage {...props} dataProvider={dataProvider} />,
     AnnouncementDetailsPage: AnnouncementDetailsPage,
-    ContactDetailsPage: ContactDetailsPage
+    ContactDetailsPage: ContactDetailsPage,
+    ProfileSettingsPage: (props: ProfileSettingsPageProps) => <ProfileSettingsPage {...props} dataProvider={dataProvider} />
   },
   {
-    defaultNavigationOptions: {
-      title: 'Chicago',
+    defaultNavigationOptions : ({ navigation }) => ({
+      headerTitle: 'Chicago',
+      headerRight: (
+        <TouchableOpacity onPress={() => { navigation.navigate('ProfileSettingsPage')}}>
+          <Ionicons name="ios-contact" size={50} style={Styles.profileSettingsButton} />
+        </TouchableOpacity>
+      ),
       headerStyle: {
         backgroundColor: appMainColor
       },
@@ -80,7 +88,11 @@ let AppNavigator = createStackNavigator(
         textAlign: 'center',
         flex: 1
       },
-    }
+      headerTitleContainerStyle: {
+        left: 0,
+        right: 0
+      }
+    })
   }
 );
 

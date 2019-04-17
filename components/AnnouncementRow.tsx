@@ -2,7 +2,8 @@ import React from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { Divider } from 'react-native-elements';
 import { Announcement } from '../models/Announcement';
-import { Styles } from '../styles';
+import { Styles } from '../Styles';
+import { formateDateToFullString } from '../Utilities';
 
 export interface AnnouncementRowProps {
   announcement: Announcement;
@@ -21,11 +22,11 @@ export class AnnouncementRow extends React.Component<AnnouncementRowProps> {
       <View >
         <TouchableOpacity onPress={() => onAnnouncementPress(announcement)}>
           <View style={Styles.appHorizontalMargin}>
-            <View style={[ Styles.rowFlex ]}>
+            <View style={ Styles.rowFlex }>
               <Text>{ announcement.Subject }</Text>
-              <Text style={[ Styles.leftMarginAuto ]}>{ announcement.Date }</Text>
+              <Text style={[ Styles.leftMarginAuto ]}>{ formateDateToFullString(announcement.Date) }</Text>
             </View>
-            <Text style={[ Styles.announcementDetailsHeight ]}>{ announcement.Details }</Text>
+            <Text style={ Styles.announcementDetailsHeight }>{ announcement.Details }</Text>
           </View>
         </TouchableOpacity>
         <Divider style={ Styles.dividerMargin }/>
