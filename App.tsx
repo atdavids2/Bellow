@@ -2,7 +2,8 @@ import React from 'react';
 import { HomePage, HomePageProps } from './pages/HomePage';
 import { RequestsPage, RequestsPageProps } from './pages/RequestsPage';
 import { CalendarPage, CalendarPageProps } from './pages/CalendarPage';
-import { ContactsPage, ContactsPageProps } from './pages/ContactsPage';
+import { ContactsPage } from './pages/ContactsPage';
+import { ContactDetailsPage, ContactDetailsPageProps } from './pages/ContactDetailsPage';
 import { AlertsPage, AlertsPageProps } from './pages/AlertsPage';
 import { AnnouncementDetailsPage } from './pages/AnnouncementDetailsPage';
 import { ProfileSettingsPage, ProfileSettingsPageProps } from './pages/ProfileSettingsPage';
@@ -10,8 +11,8 @@ import { IDataProvider } from './data/IDataProvider';
 import { MockDataProvider } from './data/MockDataProvider';
 import { Styles, appMainColor, whiteColor, grayColor } from './Styles';
 import { createBottomTabNavigator, createAppContainer, createStackNavigator, NavigationInjectedProps } from 'react-navigation';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import { TouchableOpacity } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 let dataProvider: IDataProvider = new MockDataProvider();
 
@@ -20,7 +21,7 @@ let TabNavigator = createBottomTabNavigator(
     HomePage: (props: HomePageProps & NavigationInjectedProps) => <HomePage {...props} dataProvider={dataProvider} />,
     RequestsPage: (props: RequestsPageProps) => <RequestsPage {...props} dataProvider={dataProvider} />,
     CalendarPage: (props: CalendarPageProps) => <CalendarPage {...props} dataProvider={dataProvider} />,
-    ContactsPage: (props: ContactsPageProps) => <ContactsPage {...props} dataProvider={dataProvider} />,
+    ContactsPage: (props: NavigationInjectedProps) => <ContactsPage {...props} />,
     AlertsPage: (props: AlertsPageProps) => <AlertsPage {...props} dataProvider={dataProvider} />
   },
   {
@@ -64,9 +65,10 @@ let AppNavigator = createStackNavigator(
     HomePage: (props: HomePageProps & NavigationInjectedProps) => <HomePage {...props} dataProvider={dataProvider} />,
     RequestsPage: (props: RequestsPageProps) => <RequestsPage {...props} dataProvider={dataProvider} />,
     CalendarPage: (props: CalendarPageProps) => <CalendarPage {...props} dataProvider={dataProvider} />,
-    ContactsPage: (props: ContactsPageProps) => <ContactsPage {...props} dataProvider={dataProvider} />,
+    ContactsPage: (props: NavigationInjectedProps) => <ContactsPage {...props} />,
     AlertsPage: (props: AlertsPageProps) => <AlertsPage {...props} dataProvider={dataProvider} />,
     AnnouncementDetailsPage: AnnouncementDetailsPage,
+    ContactDetailsPage: (props: ContactDetailsPageProps) => <ContactDetailsPage {...props} dataProvider={dataProvider} />,
     ProfileSettingsPage: (props: ProfileSettingsPageProps) => <ProfileSettingsPage {...props} dataProvider={dataProvider} />
   },
   {

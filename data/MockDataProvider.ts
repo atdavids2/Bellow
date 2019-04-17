@@ -1,8 +1,10 @@
-import { Announcement } from '../models/Announcement';
+import { Announcement } from '../models/Announcement'
+import { Contact, ContactType } from '../models/Contact'
 import { Alert, AlertType } from '../models/Alert';
 import { UserProfile } from '../models/UserProfile';
 import { Event, EventType } from '../models/Event';
 import { IDataProvider } from './IDataProvider';
+
 
 export class MockDataProvider implements IDataProvider {
 
@@ -44,6 +46,46 @@ export class MockDataProvider implements IDataProvider {
         return 'https://www.google.com';
     }
 
+    getContacts(contactType: ContactType): Contact[] {
+        let contacts: Contact[] = [];
+        if (contactType == ContactType.Legislator) {
+            contacts.push({
+                Id: 1,
+                Type: ContactType.Legislator,
+                Name: 'Anthony Weiner',
+                Role: 'US Senate Representative',
+                RoleDescription: 'My job is to make sure that our citizens views are represented in the US Senate.',
+                PhoneNumber: '1-800-244-3485',
+                EmailAddress: 'big.weiner@ussenate.gov'});
+        }
+        else if (contactType == ContactType.MunicipalLeader) {
+            contacts.push({
+                Id: 2,
+                Type: ContactType.MunicipalLeader,
+                Name: 'Keith Pekau',
+                Role: 'Mayor',
+                RoleDescription: 'My job is to golf all day.',
+                PhoneNumber: '1-800-123-4567',
+                EmailAddress: 'bigKeithDaBest@gmail.com'
+            });
+        }
+        else if (contactType == ContactType.School) {
+            contacts.push({
+                Id: 3,
+                Type: ContactType.School,
+                Name: 'Jim Morris',
+                Role: 'Chicago High School Principal',
+                RoleDescription: 'My job is to smack kids who are acting up',
+                PhoneNumber: '1-800-999-9999',
+                EmailAddress: 'j.morris@chicagoschools.com'
+            });
+        }
+
+        contacts = contacts.concat(contacts);
+        contacts = contacts.concat(contacts);
+        return contacts;
+    }
+    
     getAlerts(): Alert[] {
         var date = new Date();
         let alerts: Alert[] = [{
