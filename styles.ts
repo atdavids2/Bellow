@@ -72,8 +72,7 @@ export const Styles = StyleSheet.create({
     marginBottom: 10,
     marginTop: 10,
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between'
+    flexDirection: 'column'
   },
   alertIndicator: {
     height: 7,
@@ -95,6 +94,25 @@ export const Styles = StyleSheet.create({
   profileSettingsButton: {
     marginEnd: 10,
     color: whiteColor
+  },
+  contactButton: {
+    width: 120,
+    height: 120,
+    borderWidth: 1,
+    borderColor: grayColor,
+    justifyContent: 'center',
+    alignContent: 'center'
+  },
+  contactButtonImage: {
+    marginEnd: 10,
+    color: appMainColor,
+    alignSelf: 'center'
+  },
+  contactButtonRow: {
+    flexDirection: 'row',
+    marginStart: 50,
+    marginEnd: 50,
+    paddingTop: 30
   },
   justifyStart: {
     justifyContent: 'flex-start'

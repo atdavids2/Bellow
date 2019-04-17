@@ -7,8 +7,7 @@ import { Event } from '../models/Event';
 export interface IDataProvider {
     getAnnouncements(): Announcement[];
     getSurveyLink(): string;
-    getContacts(): Contact[];
-    getContacts(ContactType: ContactType): Contact[];
+    getContacts(contactType: ContactType): Contact[];
     getAlerts(): Alert[];
     getUserProfile(): UserProfile;
     toggleNotificationSetting(alertType: AlertType): void;

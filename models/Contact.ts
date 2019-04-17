@@ -1,3 +1,12 @@
+export enum ContactType {
+    Legislator,
+    MunicipalLeader,
+    School,
+    PublicSafety,
+    PublicWorks,
+    ParksAndRecreation
+}
+
 export interface Contact {
     Id: number;
     Type: ContactType;
@@ -6,13 +15,4 @@ export interface Contact {
     RoleDescription: string;
     PhoneNumber: string;
     EmailAddress: string;
-}
-
-export enum ContactType {
-    Legislator,
-    MunicipalLeader,
-    School,
-    PublicSafety,
-    PublicWorks,
-    ParksAndRecreation
 }

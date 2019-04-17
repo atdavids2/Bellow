@@ -1,43 +1,36 @@
 import React from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View } from 'react-native';
 import { Divider } from 'react-native-elements';
-import { Contact, ContactType } from '../models/Contact';
-import { Styles } from '../styles';
-import { IDataProvider } from '../data/IDataProvider';
+import { Contact } from '../models/Contact';
+import { Styles } from '../Styles';
 
-export interface ContactDetailPageProps {
-  contactType: ContactType;
-  dataProvider: IDataProvider;
+export interface ContactRowProps {
+  contact: Contact;
 }
 
-interface ContactDetailState {
-  contactList: Contact[]
-}
-
-export class ContactDetail extends React.Component<ContactDetailPageProps> {
-  constructor(props: ContactDetailPageProps) {
+export class ContactRow extends React.Component<ContactRowProps> {
+  constructor(props: ContactRowProps) {
     super(props);
-
-    this.state = {
-      contactList: []
-    }
-  }
-
-  componentWillMount() {
-    const { dataProvider } = this.props;
-    const { contactType } = this.props;
-
-    this.setState({
-      contactList: dataProvider.getContacts(contactType)
-    });
   }
 
   render() {
+    const { contact } = this.props;
 
     return (
-            <View style={Styles.appHorizontalMargin}>
-            
-            </View>        
+      <View >
+        <View style={Styles.appHorizontalMargin}>
+          <View style={ Styles.rowFlex }>
+            <Text>{ contact.Name }</Text>
+            <Text style={[ Styles.leftMarginAuto ]}>{ contact.PhoneNumber }</Text>
+          </View>
+          <View style={ Styles.rowFlex }>
+            <Text>{ contact.Role }</Text>
+            <Text style={[ Styles.leftMarginAuto ]}>{ contact.EmailAddress }</Text>
+          </View>
+          <Text>{ contact.RoleDescription }</Text>
+        </View>
+        <Divider style={ Styles.dividerMargin }/>
+      </View>      
     );
   }
 }
