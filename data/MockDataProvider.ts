@@ -3,6 +3,7 @@ import { Contact, ContactType } from '../models/Contact'
 import { Alert, AlertType } from '../models/Alert';
 import { UserProfile } from '../models/UserProfile';
 import { Event, EventType } from '../models/Event';
+import { RequestType } from '../models/Request';
 import { IDataProvider } from './IDataProvider';
 
 
@@ -180,5 +181,9 @@ export class MockDataProvider implements IDataProvider {
             Description: 'Our first grade students have finally surpassed Ms Rachel\'s reading abilities. We need volunteer moms (please no dads) to come read to the children.\nEmail Ms Rachel (msRachel@email.com) with any inquiries or if you would like to help out.\nPlease keep emails to a first grade or lower reading level or she will not respond.'
         }];
         return events;
+    }
+
+    submitRequest(requestType: RequestType, location: string, description: string) {
+        // Not implemented yet
     }
 }

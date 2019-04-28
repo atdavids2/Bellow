@@ -6,6 +6,7 @@ import { TabBarBottom } from 'react-navigation';
 export const appMainColor: string = '#f4511e';
 export const whiteColor: string = '#fff';
 export const grayColor: string = '#7f7f7f';
+export const blueColor: string = '#0000ff';
 
 export function getAlertColor(type: AlertType): string {
   if (type === AlertType.Emergency) return 'red';
@@ -28,6 +29,10 @@ export function getEventColor(type: EventType): string {
 export const Styles = StyleSheet.create({
   appHorizontalMargin: {
     marginHorizontal: 20
+  },
+  link: {
+    color: blueColor,
+    textDecorationLine: 'underline'
   },
   largeFont: {
     fontSize: 20
@@ -96,8 +101,8 @@ export const Styles = StyleSheet.create({
     color: whiteColor
   },
   contactButton: {
-    width: 120,
-    height: 120,
+    width: 135,
+    height: 135,
     borderWidth: 1,
     borderColor: grayColor,
     justifyContent: 'center',
@@ -110,9 +115,9 @@ export const Styles = StyleSheet.create({
   },
   contactButtonRow: {
     flexDirection: 'row',
-    marginStart: 50,
-    marginEnd: 50,
-    paddingTop: 30
+    marginStart: 40,
+    marginEnd: 40,
+    paddingTop: 15
   },
   justifyStart: {
     justifyContent: 'flex-start'
@@ -135,6 +140,20 @@ export const Styles = StyleSheet.create({
     borderWidth: 1,
     width: '75%',
     alignSelf: 'center'
+  },
+  requestDescription: {
+    borderColor: grayColor,
+    borderWidth: 1,
+    height: 200,
+    textAlignVertical: 'top'
+  },
+  location: {
+    borderColor: grayColor,
+    borderWidth: 1,
+    height: 25
+  },
+  classificationPicker: {
+    marginHorizontal: 10
   }
 });
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { HomePage, HomePageProps } from './pages/HomePage';
-import { RequestsPage, RequestsPageProps } from './pages/RequestsPage';
+import { RequestsPage } from './pages/RequestsPage';
+import { RequestDetailsPage, RequestDetailsPageProps } from './pages/RequestDetailsPage';
 import { CalendarPage, CalendarPageProps } from './pages/CalendarPage';
 import { ContactsPage } from './pages/ContactsPage';
 import { ContactDetailsPage, ContactDetailsPageProps } from './pages/ContactDetailsPage';
@@ -19,7 +20,7 @@ let dataProvider: IDataProvider = new MockDataProvider();
 let TabNavigator = createBottomTabNavigator(
   {
     HomePage: (props: HomePageProps & NavigationInjectedProps) => <HomePage {...props} dataProvider={dataProvider} />,
-    RequestsPage: (props: RequestsPageProps) => <RequestsPage {...props} dataProvider={dataProvider} />,
+    RequestsPage: (props: NavigationInjectedProps) => <RequestsPage {...props} />,
     CalendarPage: (props: CalendarPageProps) => <CalendarPage {...props} dataProvider={dataProvider} />,
     ContactsPage: (props: NavigationInjectedProps) => <ContactsPage {...props} />,
     AlertsPage: (props: AlertsPageProps) => <AlertsPage {...props} dataProvider={dataProvider} />
@@ -63,12 +64,13 @@ let AppNavigator = createStackNavigator(
   {
     Tabs: TabNavigator,
     HomePage: (props: HomePageProps & NavigationInjectedProps) => <HomePage {...props} dataProvider={dataProvider} />,
-    RequestsPage: (props: RequestsPageProps) => <RequestsPage {...props} dataProvider={dataProvider} />,
+    RequestsPage: (props: NavigationInjectedProps) => <RequestsPage {...props} />,
     CalendarPage: (props: CalendarPageProps) => <CalendarPage {...props} dataProvider={dataProvider} />,
     ContactsPage: (props: NavigationInjectedProps) => <ContactsPage {...props} />,
     AlertsPage: (props: AlertsPageProps) => <AlertsPage {...props} dataProvider={dataProvider} />,
     AnnouncementDetailsPage: AnnouncementDetailsPage,
     ContactDetailsPage: (props: ContactDetailsPageProps) => <ContactDetailsPage {...props} dataProvider={dataProvider} />,
+    RequestDetailsPage: (props: RequestDetailsPageProps) => <RequestDetailsPage {...props} dataProvider={dataProvider} />,
     ProfileSettingsPage: (props: ProfileSettingsPageProps) => <ProfileSettingsPage {...props} dataProvider={dataProvider} />
   },
   {
