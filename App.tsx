@@ -10,12 +10,14 @@ import { AnnouncementDetailsPage } from './pages/AnnouncementDetailsPage';
 import { ProfileSettingsPage, ProfileSettingsPageProps } from './pages/ProfileSettingsPage';
 import { IDataProvider } from './data/IDataProvider';
 import { MockDataProvider } from './data/MockDataProvider';
+import { FirebaseDataProvider } from './data/FirebaseDataProvider';
 import { Styles, appMainColor, whiteColor, grayColor } from './Styles';
 import { createBottomTabNavigator, createAppContainer, createStackNavigator, NavigationInjectedProps } from 'react-navigation';
 import { TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-let dataProvider: IDataProvider = new MockDataProvider();
+//let dataProvider: IDataProvider = new MockDataProvider();
+let dataProvider: IDataProvider = new FirebaseDataProvider();
 
 let TabNavigator = createBottomTabNavigator(
   {

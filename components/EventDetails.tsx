@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity } from 'react-native';
 import { Divider } from 'react-native-elements';
 import { Event, EventType } from '../models/Event';
 import { Styles, getEventColor } from '../Styles';
-import { formatDateToTimeString } from '../Utilities';
+import { formateDateToLocaleString } from '../Utilities';
 
 export interface EventDetailsProps {
   event: Event;
@@ -49,7 +49,7 @@ export class EventDetails extends React.Component<EventDetailsProps, EventDetail
               <View style={[ Styles.columnFlex, Styles.alertDetailsSection ]}>
                 <View style={ Styles.rowFlex }>
                   <Text>{ event.Name }</Text>
-                  <Text style={[ Styles.leftMarginAuto ]}>{ formatDateToTimeString(event.Date) }</Text>
+                  <Text style={[ Styles.leftMarginAuto ]}>{ formateDateToLocaleString(event.Date) }</Text>
                 </View>
                 <Text style={ isDescriptionExpanded ? null: Styles.announcementDetailsHeight }>{ event.Description }</Text>
               </View>

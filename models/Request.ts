@@ -8,8 +8,8 @@ export enum RequestType {
 }
 
 export interface Request {
-    Id: number;
-    RequestType: RequestType,
-    Location: string,
-    Description: string
+    RequestType: RequestType;
+    Location: string;
+    Description: string;
+    Date: string;
 }

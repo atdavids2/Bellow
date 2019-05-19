@@ -45,9 +45,15 @@ export class HomePage extends React.Component<HomePageProps & NavigationInjected
   componentWillMount() {
     const { dataProvider } = this.props;
 
-    this.setState({
-      announcements: dataProvider.getAnnouncements(),
-      surveyLink: dataProvider.getSurveyLink()
+    dataProvider.getAnnouncements().then(announcements => {
+      this.setState({
+        announcements: announcements
+      });
+    });
+    dataProvider.getSurveyLink().then(surveyLink => {
+      this.setState({
+        surveyLink: surveyLink
+      });
     });
   }
 

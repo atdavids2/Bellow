@@ -27,8 +27,10 @@ export class AlertsPage extends React.Component<AlertsPageProps, AlertsPageState
   componentWillMount() {
     const { dataProvider } = this.props;
 
-    this.setState({
-      alerts: dataProvider.getAlerts()
+    dataProvider.getAlerts().then(alerts => {
+      this.setState({
+        alerts: alerts
+      });
     });
   }
 

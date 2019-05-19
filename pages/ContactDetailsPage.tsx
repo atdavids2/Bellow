@@ -44,8 +44,10 @@ export class ContactDetailsPage extends React.Component<ContactDetailsPageProps,
     const { dataProvider } = this.props;
     const contactType: ContactType = this.props.navigation.state.params.contactType;
 
-    this.setState({
-      contacts: dataProvider.getContacts(contactType)
+    dataProvider.getContacts(contactType).then(contacts => {
+      this.setState({
+        contacts: contacts
+      });
     });
   }
 

@@ -8,6 +8,7 @@ export function formatDateToTimeString(date: Date): string {
   return hours + ':' + minutesStr + ' ' + ampm;
 }
 
-export function formateDateToFullString(date: Date): string {
+export function formateDateToLocaleString(dateString: string): string {
+  let date: Date = new Date(dateString);
   return date.toLocaleDateString();
 }

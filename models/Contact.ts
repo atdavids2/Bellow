@@ -8,7 +8,7 @@ export enum ContactType {
 }
 
 export interface Contact {
-    Id: number;
+    Id: string;
     Type: ContactType;
     Name: string;
     Role: string;

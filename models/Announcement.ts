@@ -1,7 +1,7 @@
 
 export interface Announcement {
-    Id: number;
+    Id: string;
     Subject: string;
     Details: string;
-    Date: Date;
+    Date: string;
 }

@@ -6,12 +6,12 @@ import { Event } from '../models/Event';
 import { RequestType } from '../models/Request';
 
 export interface IDataProvider {
-    getAnnouncements(): Announcement[];
-    getSurveyLink(): string;
-    getContacts(contactType: ContactType): Contact[];
-    getAlerts(): Alert[];
-    getUserProfile(): UserProfile;
-    toggleNotificationSetting(alertType: AlertType): void;
-    getEvents(): Event[];
-    submitRequest(requestType: RequestType, location: string, description: string): void;
+    getAnnouncements(): Promise<Announcement[]>;
+    getSurveyLink(): Promise<string>;
+    getContacts(contactType: ContactType): Promise<Contact[]>;
+    getAlerts(): Promise<Alert[]>;
+    getUserProfile(): Promise<UserProfile>;
+    toggleNotificationSetting(alertType: AlertType, enabled: boolean): Promise<boolean>;
+    getEvents(): Promise<Event[]>;
+    submitRequest(requestType: RequestType, location: string, description: string): Promise<boolean>;
 }

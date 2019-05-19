@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, Switch } from 'react-native';
 import { Divider } from 'react-native-elements';
 import { IDataProvider } from '../data/IDataProvider';
-import { UserProfile } from '../models/UserProfile';
+import { UserProfile, NotificationSetting } from '../models/UserProfile';
 import { AlertType } from '../models/Alert';
 import { Styles, getAlertColor } from '../Styles';
 
@@ -19,9 +19,22 @@ export class ProfileSettingsPage extends React.Component<ProfileSettingsPageProp
   constructor(props: ProfileSettingsPageProps) {
     super(props);
 
-    let userProfile: UserProfile = props.dataProvider.getUserProfile();
     this.state = {
-      userProfile: userProfile
+      userProfile: {
+        Id: "",
+        Name: "",
+        Email: "",
+        Hometown: "",
+        Addresses: "",
+        OtherHometowns: "",
+        NotificationSettings: [
+          { AlertType: AlertType.Emergency, Enabled: false },
+          { AlertType: AlertType.ParksAndRec, Enabled: false },
+          { AlertType: AlertType.Traffic, Enabled: false },
+          { AlertType: AlertType.Voting, Enabled: false },
+          { AlertType: AlertType.School, Enabled: false }
+        ]
+      }
     };
   }
 
@@ -30,9 +43,10 @@ export class ProfileSettingsPage extends React.Component<ProfileSettingsPageProp
     const { userProfile } = this.state;
     
     let newProfile: UserProfile = {...userProfile};
-    newProfile.NotificationSettings = {...userProfile.NotificationSettings}
-    newProfile.NotificationSettings[alertType] = !newProfile.NotificationSettings[alertType];
-    dataProvider.toggleNotificationSetting(alertType);
+    newProfile.NotificationSettings = userProfile.NotificationSettings.map(s => ({...s}));
+    let newValue: NotificationSetting = newProfile.NotificationSettings.find(s => s.AlertType == alertType) as NotificationSetting;
+    newValue.Enabled = !newValue.Enabled;
+    dataProvider.toggleNotificationSetting(alertType, newValue.Enabled);
 
     this.setState({
       userProfile: newProfile
@@ -43,9 +57,11 @@ export class ProfileSettingsPage extends React.Component<ProfileSettingsPageProp
   componentWillMount() {
     const { dataProvider } = this.props;
 
-    this.setState({
-      userProfile: dataProvider.getUserProfile()
-    });
+    dataProvider.getUserProfile().then(userProfile => {
+      this.setState({
+        userProfile: userProfile
+      });
+    });    
   }
 
   render() {
@@ -88,35 +104,35 @@ export class ProfileSettingsPage extends React.Component<ProfileSettingsPageProp
             <View style={[ Styles.alertIndicator, {backgroundColor: getAlertColor(AlertType.Emergency)} ]} />
             <Text> Emergency</Text>
           </View>
-          <Switch value={userProfile.NotificationSettings[AlertType.Emergency]} onValueChange={() => {this.toggleNotificationSetting(AlertType.Emergency)}}></Switch>
+          <Switch value={(userProfile.NotificationSettings.find(s => s.AlertType == AlertType.Emergency) as NotificationSetting).Enabled} onValueChange={() => {this.toggleNotificationSetting(AlertType.Emergency)}}></Switch>
         </View>
         <View style={[ Styles.rowFlex, Styles.appHorizontalMargin, Styles.notificationSettings ]} >
           <View style={ Styles.centeredRow }>
             <View style={[ Styles.alertIndicator, {backgroundColor: getAlertColor(AlertType.ParksAndRec)} ]} />
             <Text> Parks and Rec</Text>
           </View>
-          <Switch value={userProfile.NotificationSettings[AlertType.ParksAndRec]} onValueChange={() => {this.toggleNotificationSetting(AlertType.ParksAndRec)}}></Switch>
+          <Switch value={(userProfile.NotificationSettings.find(s => s.AlertType == AlertType.ParksAndRec) as NotificationSetting).Enabled} onValueChange={() => {this.toggleNotificationSetting(AlertType.ParksAndRec)}}></Switch>
         </View>
         <View style={[ Styles.rowFlex, Styles.appHorizontalMargin, Styles.notificationSettings ]} >
           <View style={ Styles.centeredRow }>
             <View style={[ Styles.alertIndicator, {backgroundColor: getAlertColor(AlertType.Traffic)} ]} />
             <Text> Traffic</Text>
           </View>
-          <Switch value={userProfile.NotificationSettings[AlertType.Traffic]} onValueChange={() => {this.toggleNotificationSetting(AlertType.Traffic)}}></Switch>
+          <Switch value={(userProfile.NotificationSettings.find(s => s.AlertType == AlertType.Traffic) as NotificationSetting).Enabled} onValueChange={() => {this.toggleNotificationSetting(AlertType.Traffic)}}></Switch>
         </View>
         <View style={[ Styles.rowFlex, Styles.appHorizontalMargin, Styles.notificationSettings ]} >
           <View style={ Styles.centeredRow }>
             <View style={[ Styles.alertIndicator, {backgroundColor: getAlertColor(AlertType.Voting)} ]} />
             <Text> Voting</Text>
           </View>
-          <Switch value={userProfile.NotificationSettings[AlertType.Voting]} onValueChange={() => {this.toggleNotificationSetting(AlertType.Voting)}}></Switch>
+          <Switch value={(userProfile.NotificationSettings.find(s => s.AlertType == AlertType.Voting) as NotificationSetting).Enabled} onValueChange={() => {this.toggleNotificationSetting(AlertType.Voting)}}></Switch>
         </View>
         <View style={[ Styles.rowFlex, Styles.appHorizontalMargin, Styles.notificationSettings ]} >
           <View style={ Styles.centeredRow }>
             <View style={[ Styles.alertIndicator, {backgroundColor: getAlertColor(AlertType.School)} ]} />
             <Text> School</Text>
           </View>
-          <Switch value={userProfile.NotificationSettings[AlertType.School]} onValueChange={() => {this.toggleNotificationSetting(AlertType.School)}}></Switch>
+          <Switch value={(userProfile.NotificationSettings.find(s => s.AlertType == AlertType.School) as NotificationSetting).Enabled} onValueChange={() => {this.toggleNotificationSetting(AlertType.School)}}></Switch>
         </View>
       </View> : null
     );

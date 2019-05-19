@@ -1,10 +1,16 @@
 import { AlertType } from './Alert';
 
+export interface NotificationSetting {
+    AlertType: AlertType,
+    Enabled: boolean
+}
+
 export interface UserProfile {
-    Name: string,
-    Email: string,
-    Hometown: string,
-    Addresses: string,
-    OtherHometowns: string,
-    NotificationSettings: { [alertType: number]: boolean }
+    Id: string;
+    Name: string;
+    Email: string;
+    Hometown: string;
+    Addresses: string;
+    OtherHometowns: string;
+    NotificationSettings: NotificationSetting[];
 }

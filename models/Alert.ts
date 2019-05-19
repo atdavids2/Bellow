@@ -8,9 +8,9 @@ export enum AlertType {
 }
 
 export interface Alert {
-    Id: number;
+    Id: string;
     Topic: string;
     Type: AlertType;
-    Date: Date;
+    Date: string;
     Description: string;
 }
