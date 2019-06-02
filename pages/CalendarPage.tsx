@@ -72,19 +72,19 @@ export class CalendarPage extends React.Component<CalendarPageProps, CalendarPag
           dotArray = eventDates[dateStr].dots;
         }
   
-        if (event.Type & EventType.Political) {
+        if ((event.Type & EventType.Political) && !dotArray.includes(political)) {
           dotArray.push(political);
         }
-        if (event.Type & EventType.Recreation) {
+        if ((event.Type & EventType.Recreation) && !dotArray.includes(recreation)) {
           dotArray.push(recreation);
         }
-        if (event.Type & EventType.School) {
+        if ((event.Type & EventType.School) && !dotArray.includes(school)) {
           dotArray.push(school);
         }
-        if (event.Type & EventType.CareerServices) {
+        if ((event.Type & EventType.CareerServices) && !dotArray.includes(careerServices)) {
           dotArray.push(careerServices);
         }
-        if (event.Type & EventType.Volunteering) {
+        if ((event.Type & EventType.Volunteering) && !dotArray.includes(volunteering)) {
           dotArray.push(volunteering);
         }
         eventDates[dateStr] = {dots: dotArray};
@@ -115,6 +115,7 @@ export class CalendarPage extends React.Component<CalendarPageProps, CalendarPag
 
     return (
       <View style={ Styles.appPageStyle }>
+        <View style={[ Styles.pageHeader ]}>
         <Calendar
           style={[ Styles.appHorizontalMargin, Styles.calendar ]}
           theme={ calendarTheme }
@@ -122,8 +123,8 @@ export class CalendarPage extends React.Component<CalendarPageProps, CalendarPag
           markedDates={markedDates}
           markingType={'multi-dot'}
           onDayPress={(day) => this.onDaySelected(day)} />
-        <Divider style={ Styles.dividerMargin }/>
-        <Text style={[ Styles.appHorizontalMargin, Styles.mediumFont ]}>{selectedDate.toDateString()}</Text>
+        </View>
+        <Text style={[ Styles.appHorizontalMargin, Styles.mediumFont, Styles.dividerMargin, Styles.colorBlack ]}>{selectedDate.toDateString()}</Text>
         <Divider style={ Styles.dividerMargin }/>
         <ScrollView style={ Styles.scrollView }>
           {eventList}

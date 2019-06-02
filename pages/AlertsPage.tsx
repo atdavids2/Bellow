@@ -1,6 +1,5 @@
 import React from 'react';
 import { Text, View, ScrollView } from 'react-native';
-import { Divider } from 'react-native-elements';
 import { IDataProvider } from '../data/IDataProvider';
 import { Alert } from '../models/Alert';
 import { AlertDetails } from '../components/AlertDetails';
@@ -43,8 +42,9 @@ export class AlertsPage extends React.Component<AlertsPageProps, AlertsPageState
 
     return (
       <View style={[ Styles.appPageStyle ]}>
-        <Text style={[ Styles.largeFont, Styles.appHorizontalMargin ]}>Alerts</Text>
-        <Divider style={ Styles.dividerMargin }/>
+        <View style={[ Styles.pageHeader ]}>
+            <Text style={[ Styles.largeFont, Styles.appHorizontalMargin, Styles.colorBlack ]}>Alerts</Text>
+          </View>
         <ScrollView style={ Styles.scrollView }>
           {alertList}
         </ScrollView>

@@ -78,9 +78,10 @@ export class ProfileSettingsPage extends React.Component<ProfileSettingsPageProp
     return (
       userProfile ? 
       <View style={[ Styles.appPageStyle, Styles.justifyStart ]}>
-        <Text style={[ Styles.largeFont, Styles.appHorizontalMargin ]}>User Settings</Text>
-        <View style={ Styles.smallDividerMargin }/>
-        <View style={[ Styles.rowFlex, Styles.appHorizontalMargin ]} >
+        <View style={[ Styles.pageHeader ]}>
+          <Text style={[ Styles.largeFont, Styles.appHorizontalMargin, Styles.colorBlack ]}>User Settings</Text>
+        </View>
+        <View style={[ Styles.rowFlex, Styles.appHorizontalMargin, Styles.dividerMargin ]} >
           <Text>Name: </Text>
           <Text>{userProfile.Name}</Text>
         </View>
@@ -101,9 +102,9 @@ export class ProfileSettingsPage extends React.Component<ProfileSettingsPageProp
           <Text>{userProfile.OtherHometowns}</Text>
         </View>
         <Divider style={ Styles.dividerMargin }/>
-        <Text style={[ Styles.largeFont, Styles.appHorizontalMargin ]}>Notification Settings</Text>
+        <Text style={[ Styles.mediumFont, Styles.appHorizontalMargin, Styles.dividerMargin, Styles.colorBlack ]}>Notification Settings</Text>
         <View style={ Styles.smallDividerMargin } ></View>
-        <View style={[ Styles.rowFlex, Styles.appHorizontalMargin, Styles.justifySpace ]} >
+        <View style={[ Styles.rowFlex, Styles.appHorizontalMargin ]} >
           <Text>Type of Notification</Text>
           <Text>On/Off</Text>
         </View>

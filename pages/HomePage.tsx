@@ -1,6 +1,5 @@
 import React from 'react';
 import { Text, View, ScrollView, Button, Linking } from 'react-native';
-import { Divider } from 'react-native-elements';
 import { Announcement } from '../models/Announcement';
 import { IDataProvider } from '../data/IDataProvider';
 import { AnnouncementRow } from '../components/AnnouncementRow';
@@ -66,17 +65,20 @@ export class HomePage extends React.Component<HomePageProps & NavigationInjected
     />);
 
     return (
-      <View style={[ Styles.appPageStyle ]}>
-        <Text style={[ Styles.largeFont, Styles.appHorizontalMargin ]}>Announcements</Text>
-        <Divider style={ Styles.dividerMargin }/>
+      <View style={ Styles.appPageStyle }>
+        <View style={[ Styles.pageHeader ]}>
+          <Text style={[ Styles.largeFont, Styles.appHorizontalMargin, Styles.colorBlack ]}>Announcements</Text>
+        </View>
         <ScrollView style={ Styles.scrollView }>
           {announcementList}
         </ScrollView>
-        <View style={ Styles.surveyButton }>
-          <Button
-            onPress={this.openSurvey}
-            title='Take Community Survey'
-            color={appMainColor} />
+        <View style={ Styles.pageFooter }>
+          <View style={ Styles.surveyButton }>
+            <Button
+              onPress={this.openSurvey}
+              title='Take Community Survey'
+              color={appMainColor} />
+          </View>
         </View>
       </View>
     );

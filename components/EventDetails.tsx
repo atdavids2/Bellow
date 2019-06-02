@@ -36,7 +36,7 @@ export class EventDetails extends React.Component<EventDetailsProps, EventDetail
 
     return (
       <View>
-        <View>
+        <View style={ Styles.dividerMargin }>
           <View style={ Styles.rowFlex }>
             <View style={ Styles.alertIndicatorSection }>
               {event.Type & EventType.Political ? <View style={[ Styles.alertIndicator, {backgroundColor: getEventColor(EventType.Political)} ]} />: null}
@@ -48,8 +48,8 @@ export class EventDetails extends React.Component<EventDetailsProps, EventDetail
             <TouchableOpacity onPress={() => this.toggleExpandDetails()}>
               <View style={[ Styles.columnFlex, Styles.alertDetailsSection ]}>
                 <View style={ Styles.rowFlex }>
-                  <Text>{ event.Name }</Text>
-                  <Text style={[ Styles.leftMarginAuto ]}>{ formateDateToLocaleString(event.Date) }</Text>
+                  <Text style={ Styles.colorBlack }>{ event.Name }</Text>
+                  <Text style={[ Styles.leftMarginAuto, Styles.colorBlack ]}>{ formateDateToLocaleString(event.Date) }</Text>
                 </View>
                 <Text style={ isDescriptionExpanded ? null: Styles.announcementDetailsHeight }>{ event.Description }</Text>
               </View>

@@ -1,10 +1,8 @@
 import React from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity, Image, ImageBackground } from 'react-native';
 import { NavigationInjectedProps } from 'react-navigation';
 import { ContactType } from '../models/Contact';
 import { Styles } from '../Styles';
-import { Divider } from 'react-native-elements';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export class ContactsPage extends React.Component<NavigationInjectedProps> {
  
@@ -20,40 +18,45 @@ export class ContactsPage extends React.Component<NavigationInjectedProps> {
   render() {
    
     return (
-      <View style={[ Styles.appPageStyle ]}>
-        <Text style={[ Styles.largeFont, Styles.appHorizontalMargin ]}>Contacts</Text>
-        <Divider style={ Styles.dividerMargin }/>
-        <View style={ Styles.contactButtonRow }>
-          <TouchableOpacity style={ Styles.contactButton } onPress={() => { this.onButtonPress(ContactType.Legislator)}}>
-            <Ionicons name="ios-hand" size={50} style={ Styles.contactButtonImage } />
-            <Text style={ Styles.centeredRow }>Legislators</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[ Styles.contactButton, Styles.leftMarginAuto ]} onPress={() => { this.onButtonPress(ContactType.MunicipalLeader)}}>
-            <Ionicons name="ios-person" size={50} style={ Styles.contactButtonImage } />
-            <Text style={ Styles.centeredRow }>Municpal leaders</Text>
-          </TouchableOpacity>
+      <ImageBackground source={require('../assets/images/chicagoBackground.jpg')} style={ Styles.backgroundImage }>
+        <View style={[ Styles.appPageStyle ]}>
+          <View style={[ Styles.pageHeader ]}>
+            <Text style={[ Styles.largeFont, Styles.appHorizontalMargin, Styles.colorBlack ]}>Contacts</Text>
+          </View>
+          <View style={ Styles.justifyEvenly }>
+          <View style={[ Styles.rowFlex, Styles.alignCenter ]}>
+              <TouchableOpacity style={ Styles.contactRequestButton } onPress={() => { this.onButtonPress(ContactType.Legislator)}}>
+                <Image source={require("../assets/images/Legislators.png")} style={ Styles.contactRequestImage } />
+                <Text style={[ Styles.centeredRow, Styles.colorBlack ]}>Legislators</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={[ Styles.contactRequestButton, Styles.leftMarginAuto ]} onPress={() => { this.onButtonPress(ContactType.MunicipalLeader)}}>
+                <Image source={require("../assets/images/MunicipalLeaders.png")} style={ Styles.contactRequestImage } />
+                <Text style={[ Styles.centeredRow, Styles.colorBlack ]}>Municipal Leaders</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={[ Styles.rowFlex, Styles.alignCenter ]}>
+              <TouchableOpacity style={ Styles.contactRequestButton } onPress={() => { this.onButtonPress(ContactType.School)}}>
+                <Image source={require("../assets/images/Schools.png")} style={ Styles.contactRequestImage } />
+                <Text style={[ Styles.centeredRow, Styles.colorBlack ]}>Schools</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={[ Styles.contactRequestButton, Styles.leftMarginAuto ]} onPress={() => { this.onButtonPress(ContactType.PublicSafety)}}>
+                <Image source={require("../assets/images/PublicSafety.png")} style={ Styles.contactRequestImage } />
+                <Text style={[ Styles.centeredRow, Styles.colorBlack ]}>Public Safety</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={[ Styles.rowFlex, Styles.alignCenter ]}>
+              <TouchableOpacity style={ Styles.contactRequestButton } onPress={() => { this.onButtonPress(ContactType.ParksAndRecreation)}}>
+                <Image source={require("../assets/images/ParksAndRec.png")} style={ Styles.contactRequestImage } />
+                <Text style={[ Styles.centeredRow, Styles.colorBlack ]}>Parks and Rec</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={[ Styles.contactRequestButton, Styles.leftMarginAuto ]} onPress={() => { this.onButtonPress(ContactType.PublicWorks)}}>
+                <Image source={require("../assets/images/PublicWorks.png")} style={ Styles.contactRequestImage } />
+                <Text style={[ Styles.centeredRow, Styles.colorBlack ]}>Public Works</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
         </View>
-        <View style={ Styles.contactButtonRow }>
-          <TouchableOpacity style={ Styles.contactButton } onPress={() => { this.onButtonPress(ContactType.School)}}>
-            <Ionicons name="ios-book" size={50} style={ Styles.contactButtonImage } />
-            <Text style={ Styles.centeredRow }>Schools</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[ Styles.contactButton, Styles.leftMarginAuto ]} onPress={() => { this.onButtonPress(ContactType.PublicSafety)}}>
-            <Ionicons name="ios-warning" size={50} style={ Styles.contactButtonImage } />
-            <Text style={ Styles.centeredRow }>Public safety</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={ Styles.contactButtonRow }>
-          <TouchableOpacity style={ Styles.contactButton } onPress={() => { this.onButtonPress(ContactType.ParksAndRecreation)}}>
-            <Ionicons name="ios-basketball" size={50} style={ Styles.contactButtonImage } />
-            <Text style={ Styles.centeredRow }>Parks and rec</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[ Styles.contactButton, Styles.leftMarginAuto ]} onPress={() => { this.onButtonPress(ContactType.PublicWorks)}}>
-            <Ionicons name="ios-hammer" size={50} style={ Styles.contactButtonImage } />
-            <Text style={ Styles.centeredRow }>Public works</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+      </ImageBackground>
     );
   }
 }

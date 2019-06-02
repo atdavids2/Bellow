@@ -36,7 +36,7 @@ export class AlertDetails extends React.Component<AlertDetailsProps, AlertDetail
 
     return (
       <View>
-        <View>
+        <View style={ Styles.dividerMargin }>
           <View style={ Styles.rowFlex }>
             <View style={ Styles.alertIndicatorSection }>
               {alert.Type & AlertType.Emergency ? <View style={[ Styles.alertIndicator, {backgroundColor: getAlertColor(AlertType.Emergency)} ]} />: null}
@@ -48,8 +48,8 @@ export class AlertDetails extends React.Component<AlertDetailsProps, AlertDetail
             <TouchableOpacity onPress={() => this.toggleExpandDetails()}>
               <View style={[ Styles.columnFlex, Styles.alertDetailsSection ]}>
                 <View style={ Styles.rowFlex }>
-                  <Text>{ alert.Topic }</Text>
-                  <Text style={[ Styles.leftMarginAuto ]}>{ formateDateToLocaleString(alert.Date) }</Text>
+                  <Text style={ Styles.colorBlack }>{ alert.Topic }</Text>
+                  <Text style={[ Styles.leftMarginAuto, Styles.colorBlack ]}>{ formateDateToLocaleString(alert.Date) }</Text>
                 </View>
                 <Text style={ isDescriptionExpanded ? null: Styles.announcementDetailsHeight }>{ alert.Description }</Text>
               </View>

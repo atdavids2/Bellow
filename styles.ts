@@ -1,10 +1,11 @@
 import { StyleSheet } from 'react-native';
 import { AlertType } from './models/Alert';
 import { EventType } from './models/Event';
-import { TabBarBottom } from 'react-navigation';
 
 export const appMainColor: string = '#f4511e';
+export const appSecondaryColor: string = '#add8e6';
 export const whiteColor: string = '#fff';
+export const blackColor: string = '#000000'
 export const grayColor: string = '#7f7f7f';
 export const blueColor: string = '#0000ff';
 
@@ -51,7 +52,7 @@ export const Styles = StyleSheet.create({
   },
   loginButton: {
     width: 100,
-    margin: 10
+    margin: 15
   },
   grayBorder: {
     borderWidth: 1,
@@ -67,12 +68,10 @@ export const Styles = StyleSheet.create({
     marginLeft: 'auto'
   },
   smallDividerMargin: {
-    marginTop: 5,
-    marginBottom: 5
+    marginTop: 5
   },
   dividerMargin: {
-    marginTop: 10,
-    marginBottom: 10
+    marginTop: 10
   },
   largeDividerMargin: {
     marginTop: 30,
@@ -80,17 +79,12 @@ export const Styles = StyleSheet.create({
   },
   backgroundImage: {
     flex: 1,
-    resizeMode: 'cover',
-    marginTop: -20
+    resizeMode: 'cover'
   },
   announcementDetailsHeight: {
     maxHeight: 50
   },
   scrollView: {
-    flex: 1,
-    flexDirection: 'column'
-  },
-  contactsScrollView: {
     flex: 1,
     flexDirection: 'column'
   },
@@ -100,8 +94,6 @@ export const Styles = StyleSheet.create({
     marginTop: 10
   },
   appPageStyle: {
-    marginBottom: 10,
-    marginTop: 10,
     flex: 1,
     flexDirection: 'column'
   },
@@ -126,30 +118,22 @@ export const Styles = StyleSheet.create({
     marginEnd: 10,
     color: whiteColor
   },
-  contactButton: {
+  contactRequestButton: {
     width: 135,
     height: 135,
     borderWidth: 1,
-    borderColor: grayColor,
+    borderColor: blackColor,
     justifyContent: 'center',
-    alignContent: 'center'
+    alignContent: 'center',
+    backgroundColor: appSecondaryColor,
+    marginHorizontal: 40
   },
-  contactButtonImage: {
-    marginEnd: 10,
-    color: appMainColor,
-    alignSelf: 'center'
-  },
-  pngImageStyle: {
-    marginEnd: 10,
+  contactRequestImage: {
     color: appMainColor,
     alignSelf: 'center',
-    tintColor: appMainColor
-  },
-  contactButtonRow: {
-    flexDirection: 'row',
-    marginStart: 40,
-    marginEnd: 40,
-    paddingTop: 15
+    tintColor: appMainColor,
+    width: 90,
+    height: 90
   },
   justifyStart: {
     justifyContent: 'flex-start'
@@ -163,8 +147,9 @@ export const Styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row'
   },
-  justifySpace: {
-    justifyContent: 'space-between'
+  justifyEvenly: {
+    justifyContent: 'space-evenly',
+    flex: 1
   },
   calendar: {
     borderColor: grayColor,
@@ -187,7 +172,26 @@ export const Styles = StyleSheet.create({
     height: 100
   },
   classificationPicker: {
-    marginHorizontal: 10
+    height: 30
+  },
+  pickerContainer: {
+    borderWidth: 1,
+    borderColor: grayColor
+  },
+  pageHeader: {
+    backgroundColor: appSecondaryColor,
+    paddingTop: 15,
+    paddingBottom: 15
+  },
+  pageFooter: {
+    backgroundColor: appSecondaryColor,
+    paddingBottom: 10
+  },
+  colorBlack: {
+    color: blackColor
+  },
+  whiteBackground: {
+    backgroundColor: whiteColor
   }
 });
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Text, View, ScrollView, TextInput, Picker, Button } from 'react-native';
-import { Divider } from 'react-native-elements';
 import { RequestType } from '../models/Request';
 import { Styles, appMainColor } from '../Styles';
 import { IDataProvider } from '../data/IDataProvider';
@@ -62,28 +61,30 @@ export class RequestDetailsPage extends React.Component<RequestDetailsPageProps,
 
   render() {
     const { classification, location, description } = this.state;
-    const requestType: RequestType = this.props.navigation.state.params.requestType;
 
     return (
       <KeyboardAwareScrollView>
         <View style={[ Styles.appPageStyle ]}>
-          <Text style={[ Styles.largeFont, Styles.appHorizontalMargin ]}>Submit a request</Text>
-          <Divider style={ Styles.dividerMargin }/>
+          <View style={[ Styles.pageHeader ]}>
+            <Text style={[ Styles.largeFont, Styles.appHorizontalMargin, Styles.colorBlack ]}>Submit a Request</Text>
+          </View>
           <ScrollView style={ Styles.scrollView }>
             <View style={ Styles.dividerMargin }>
               <Text style={[ Styles.appHorizontalMargin ]}>Classification</Text>
-              <Picker
-                selectedValue={ classification }
-                style={[ Styles.classificationPicker ]}
-                mode='dropdown'
-                onValueChange={ (itemValue, itemIndex) => this.setState({ classification: itemValue }) }>
-                <Picker.Item label={ this.getRequestTypeString(RequestType.TreesAndParks) } value={ RequestType.TreesAndParks } />
-                <Picker.Item label={ this.getRequestTypeString(RequestType.TrafficAndVehicles) } value={ RequestType.TrafficAndVehicles } />
-                <Picker.Item label={ this.getRequestTypeString(RequestType.Streets) } value={ RequestType.Streets } />
-                <Picker.Item label={ this.getRequestTypeString(RequestType.FoodAndBeverages) } value={ RequestType.FoodAndBeverages } />
-                <Picker.Item label={ this.getRequestTypeString(RequestType.Housing) } value={ RequestType.Housing } />
-                <Picker.Item label={ this.getRequestTypeString(RequestType.PublicConcern) } value={ RequestType.PublicConcern } />
-              </Picker>
+              <View style={[ Styles.pickerContainer, Styles.appHorizontalMargin ]}>
+                <Picker
+                  selectedValue={ classification }
+                  style={[ Styles.classificationPicker ]}
+                  mode='dialog'
+                  onValueChange={ (itemValue, itemIndex) => this.setState({ classification: itemValue }) }>
+                  <Picker.Item label={ this.getRequestTypeString(RequestType.TreesAndParks) } value={ RequestType.TreesAndParks } />
+                  <Picker.Item label={ this.getRequestTypeString(RequestType.TrafficAndVehicles) } value={ RequestType.TrafficAndVehicles } />
+                  <Picker.Item label={ this.getRequestTypeString(RequestType.Streets) } value={ RequestType.Streets } />
+                  <Picker.Item label={ this.getRequestTypeString(RequestType.FoodAndBeverages) } value={ RequestType.FoodAndBeverages } />
+                  <Picker.Item label={ this.getRequestTypeString(RequestType.Housing) } value={ RequestType.Housing } />
+                  <Picker.Item label={ this.getRequestTypeString(RequestType.PublicConcern) } value={ RequestType.PublicConcern } />
+                </Picker>
+              </View>
             </View>
             <View style={ Styles.dividerMargin }>
               <Text style={[ Styles.appHorizontalMargin ]}>Location</Text>

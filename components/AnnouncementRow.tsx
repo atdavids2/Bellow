@@ -19,12 +19,12 @@ export class AnnouncementRow extends React.Component<AnnouncementRowProps> {
     const { onAnnouncementPress, announcement } = this.props;
 
     return (
-      <View >
+      <View>
         <TouchableOpacity onPress={() => onAnnouncementPress(announcement)}>
-          <View style={Styles.appHorizontalMargin}>
+          <View style={[ Styles.appHorizontalMargin, Styles.dividerMargin ]}>
             <View style={ Styles.rowFlex }>
-              <Text>{ announcement.Subject }</Text>
-              <Text style={[ Styles.leftMarginAuto ]}>{ formateDateToLocaleString(announcement.Date) }</Text>
+              <Text style={ Styles.colorBlack }>{ announcement.Subject }</Text>
+              <Text style={[ Styles.leftMarginAuto, Styles.colorBlack ]}>{ formateDateToLocaleString(announcement.Date) }</Text>
             </View>
             <Text style={ Styles.announcementDetailsHeight }>{ announcement.Details }</Text>
           </View>

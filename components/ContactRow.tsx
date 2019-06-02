@@ -17,10 +17,10 @@ export class ContactRow extends React.Component<ContactRowProps> {
     const { contact } = this.props;
 
     return (
-      <View >
-        <View style={Styles.appHorizontalMargin}>
+      <View>
+        <View style={[ Styles.appHorizontalMargin, Styles.dividerMargin ]}>
           <View style={ Styles.rowFlex }>
-            <Text>{ contact.Name }</Text>
+            <Text style={ Styles.colorBlack }>{ contact.Name }</Text>
             <Text style={[ Styles.leftMarginAuto ]}>{ contact.PhoneNumber }</Text>
           </View>
           <View style={ Styles.rowFlex }>

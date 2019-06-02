@@ -14,7 +14,7 @@ import { AuthLoadingScreen, AuthLoadingScreenProps } from './pages/AuthLoadingSc
 import { IDataProvider } from './data/IDataProvider';
 import { MockDataProvider } from './data/MockDataProvider';
 import { FirebaseDataProvider } from './data/FirebaseDataProvider';
-import { Styles, appMainColor, whiteColor, grayColor } from './Styles';
+import { Styles, appMainColor, whiteColor } from './Styles';
 import { createBottomTabNavigator, createAppContainer, createStackNavigator, createSwitchNavigator, NavigationInjectedProps } from 'react-navigation';
 import { TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -55,8 +55,8 @@ let TabNavigator = createBottomTabNavigator(
       }
     }),
     tabBarOptions: {
-      activeTintColor: whiteColor,
-      inactiveTintColor: grayColor,
+      activeTintColor: '#832406',
+      inactiveTintColor: whiteColor,
       showLabel: false,
       style: {
         backgroundColor: appMainColor

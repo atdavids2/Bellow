@@ -1,6 +1,5 @@
 import React from 'react';
 import { Text, View, ScrollView } from 'react-native';
-import { Divider } from 'react-native-elements';
 import { Contact, ContactType } from '../models/Contact';
 import { ContactRow } from '../components/ContactRow';
 import { Styles } from '../Styles';
@@ -63,8 +62,9 @@ export class ContactDetailsPage extends React.Component<ContactDetailsPageProps,
 
     return (
       <View style={[ Styles.appPageStyle ]}>
-        <Text style={[ Styles.largeFont, Styles.appHorizontalMargin ]}>{contactTypeString}</Text>
-        <Divider style={ Styles.dividerMargin }/>
+        <View style={[ Styles.pageHeader ]}>
+          <Text style={[ Styles.largeFont, Styles.appHorizontalMargin, Styles.colorBlack ]}>{contactTypeString}</Text>
+        </View>
         <ScrollView style={ Styles.scrollView }>
           {contactList}
         </ScrollView>

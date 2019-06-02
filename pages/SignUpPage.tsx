@@ -51,77 +51,76 @@ export class SignUpPage extends React.Component<SignUpPageProps & NavigationInje
     const { name, email, password, hometown, address, errorMessage } = this.state;
 
     return (
-      //<ImageBackground source={require('../assets/images/nyBackground.jpg')} style={ Styles.backgroundImage }>
-        //<View style={ Styles.largeDividerMargin } />
-      <KeyboardAwareScrollView>
-        <View style={[ Styles.appPageStyle ]}>
-          <View style={ Styles.largeDividerMargin } />
-          <Text style={[ Styles.extraLargeFont, Styles.appHorizontalMargin, Styles.centeredText ]}>Welcome to Bello</Text>
-          <View style={[ Styles.grayBorder, Styles.appHorizontalMargin, Styles.dividerMargin ]}>
-            <View style={ Styles.dividerMargin }>
-              {errorMessage ? <Text style={[ Styles.appHorizontalMargin, Styles.dividerMargin ]}>{errorMessage}</Text> : null}
-              <Text style={[ Styles.appHorizontalMargin ]}>Name</Text>
-              <View style={[ Styles.appHorizontalMargin, Styles.singleLineTextInputContainer ]}>
-                <TextInput
-                  style={[ Styles.textInput ]}
-                  onChangeText={ (text: string) => this.setState({name: text}) }
-                  value={ name }
-                />
+      <ImageBackground source={require('../assets/images/chicagoBackground.jpg')} style={ Styles.backgroundImage }>
+        <KeyboardAwareScrollView>
+          <View style={[ Styles.appPageStyle ]}>
+            <View style={ Styles.largeDividerMargin } />
+            <View style={[ Styles.grayBorder, Styles.appHorizontalMargin, Styles.dividerMargin, Styles.whiteBackground ]}>
+              <Text style={[ Styles.extraLargeFont, Styles.appHorizontalMargin, Styles.centeredText, Styles.dividerMargin ]}>Welcome to Bello</Text>
+              <View style={ Styles.dividerMargin }>
+                {errorMessage ? <Text style={[ Styles.appHorizontalMargin, Styles.dividerMargin ]}>{errorMessage}</Text> : null}
+                <Text style={[ Styles.appHorizontalMargin ]}>Name</Text>
+                <View style={[ Styles.appHorizontalMargin, Styles.singleLineTextInputContainer ]}>
+                  <TextInput
+                    style={[ Styles.textInput ]}
+                    onChangeText={ (text: string) => this.setState({name: text}) }
+                    value={ name }
+                  />
+                </View>
               </View>
-            </View>
-            <View style={ Styles.dividerMargin }>
-              <Text style={[ Styles.appHorizontalMargin ]}>Email</Text>
-              <View style={[ Styles.appHorizontalMargin, Styles.singleLineTextInputContainer ]}>
-                <TextInput
-                  style={[ Styles.textInput ]}
-                  onChangeText={ (text: string) => this.setState({email: text}) }
-                  value={ email }
-                />
+              <View style={ Styles.dividerMargin }>
+                <Text style={[ Styles.appHorizontalMargin ]}>Email</Text>
+                <View style={[ Styles.appHorizontalMargin, Styles.singleLineTextInputContainer ]}>
+                  <TextInput
+                    style={[ Styles.textInput ]}
+                    onChangeText={ (text: string) => this.setState({email: text}) }
+                    value={ email }
+                  />
+                </View>
               </View>
-            </View>
-            <View style={ Styles.dividerMargin }>
-              <Text style={[ Styles.appHorizontalMargin ]}>Password</Text>
-              <View style={[ Styles.appHorizontalMargin, Styles.singleLineTextInputContainer ]}>
-                <TextInput
-                  style={[ Styles.textInput ]}
-                  onChangeText={ (text: string) => this.setState({password: text}) }
-                  value={ password }
-                  secureTextEntry={ true }
-                />
+              <View style={ Styles.dividerMargin }>
+                <Text style={[ Styles.appHorizontalMargin ]}>Password</Text>
+                <View style={[ Styles.appHorizontalMargin, Styles.singleLineTextInputContainer ]}>
+                  <TextInput
+                    style={[ Styles.textInput ]}
+                    onChangeText={ (text: string) => this.setState({password: text}) }
+                    value={ password }
+                    secureTextEntry={ true }
+                  />
+                </View>
               </View>
-            </View>
-            <View style={ Styles.dividerMargin }>
-              <Text style={[ Styles.appHorizontalMargin ]}>Hometown</Text>
-              <View style={[ Styles.appHorizontalMargin, Styles.singleLineTextInputContainer ]}>
-                <TextInput
-                  style={[ Styles.textInput ]}
-                  onChangeText={ (text: string) => this.setState({hometown: text}) }
-                  value={ hometown }
-                />
+              <View style={ Styles.dividerMargin }>
+                <Text style={[ Styles.appHorizontalMargin ]}>Hometown</Text>
+                <View style={[ Styles.appHorizontalMargin, Styles.singleLineTextInputContainer ]}>
+                  <TextInput
+                    style={[ Styles.textInput ]}
+                    onChangeText={ (text: string) => this.setState({hometown: text}) }
+                    value={ hometown }
+                  />
+                </View>
               </View>
-            </View>
-            <View style={ Styles.dividerMargin }>
-              <Text style={[ Styles.appHorizontalMargin ]}>Address</Text>
-              <View style={[ Styles.appHorizontalMargin, Styles.singleLineTextInputContainer ]}>
-                <TextInput
-                  style={[ Styles.textInput ]}
-                  onChangeText={ (text: string) => this.setState({address: text}) }
-                  value={ address }
-                />
+              <View style={ Styles.dividerMargin }>
+                <Text style={[ Styles.appHorizontalMargin ]}>Address</Text>
+                <View style={[ Styles.appHorizontalMargin, Styles.singleLineTextInputContainer ]}>
+                  <TextInput
+                    style={[ Styles.textInput ]}
+                    onChangeText={ (text: string) => this.setState({address: text}) }
+                    value={ address }
+                  />
+                </View>
               </View>
-            </View>
-            <View style= {[ Styles.rowFlex, Styles.alignCenter ]}>
-              <View style={ Styles.loginButton }>
-                <Button
-                  onPress={ this.signup }
-                  title='Sign Up'
-                  color={ appMainColor } />
+              <View style= {[ Styles.rowFlex, Styles.alignCenter ]}>
+                <View style={ Styles.loginButton }>
+                  <Button
+                    onPress={ this.signup }
+                    title='Sign Up'
+                    color={ appMainColor } />
+                </View>
               </View>
             </View>
           </View>
-        </View>
-      </KeyboardAwareScrollView>
-      //</ImageBackground>
+        </KeyboardAwareScrollView>
+      </ImageBackground>
     );
   }
 }

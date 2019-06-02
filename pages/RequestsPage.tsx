@@ -1,10 +1,8 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, Linking, Image } from 'react-native';
+import { Text, View, TouchableOpacity, Linking, Image, ImageBackground } from 'react-native';
 import { NavigationInjectedProps } from 'react-navigation';
 import { RequestType } from '../models/Request';
 import { Styles } from '../Styles';
-import { Divider } from 'react-native-elements';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export class RequestsPage extends React.Component<NavigationInjectedProps> {
  
@@ -30,45 +28,50 @@ export class RequestsPage extends React.Component<NavigationInjectedProps> {
   render() {
    
     return (
-      <View style={[ Styles.appPageStyle ]}>
-        <Text style={[ Styles.largeFont, Styles.appHorizontalMargin ]}>Requests</Text>
-        <Text
-          style={[ Styles.link, Styles.appHorizontalMargin ]}
-          onPress={ this.openActiveRequests }>
-          or check an existing request
-        </Text>
-        <Divider style={ Styles.dividerMargin }/>
-        <View style={ Styles.contactButtonRow }>
-          <TouchableOpacity style={ Styles.contactButton } onPress={() => { this.onRequestButtonPress(RequestType.TreesAndParks)}}>
-            <Image source={require("../assets/images/TreesAndParks.png")} style={ Styles.pngImageStyle } />
-            <Text style={ Styles.centeredRow }>Trees and parks</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[ Styles.contactButton, Styles.leftMarginAuto ]} onPress={() => { this.onRequestButtonPress(RequestType.TrafficAndVehicles)}}>
-            <Ionicons name="ios-car" size={50} style={ Styles.contactButtonImage } />
-            <Text style={ Styles.centeredRow }>Traffic and vehicles</Text>
-          </TouchableOpacity>
+      <ImageBackground source={require('../assets/images/chicagoBackground.jpg')} style={ Styles.backgroundImage }>
+        <View style={[ Styles.appPageStyle ]}>
+          <View style={[ Styles.pageHeader ]}>
+            <Text style={[ Styles.largeFont, Styles.appHorizontalMargin, Styles.colorBlack ]}>Make a Request</Text>
+            <Text
+              style={[ Styles.link, Styles.appHorizontalMargin ]}
+              onPress={ this.openActiveRequests }>
+              or check an existing request
+            </Text>
+          </View>
+            <View style={ Styles.justifyEvenly }>
+              <View style={[ Styles.rowFlex, Styles.alignCenter ]}>
+                <TouchableOpacity style={ Styles.contactRequestButton } onPress={() => { this.onRequestButtonPress(RequestType.TreesAndParks)}}>
+                  <Image source={require("../assets/images/TreesAndParks.png")} style={ Styles.contactRequestImage } />
+                  <Text style={[ Styles.centeredRow, Styles.colorBlack ]}>Trees and Parks</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={[ Styles.contactRequestButton, Styles.leftMarginAuto ]} onPress={() => { this.onRequestButtonPress(RequestType.TrafficAndVehicles)}}>
+                  <Image source={require("../assets/images/TrafficAndVehicles.png")} style={ Styles.contactRequestImage } />
+                  <Text style={[ Styles.centeredRow, Styles.colorBlack ]}>Traffic and Vehicles</Text>
+                </TouchableOpacity>
+              </View>
+              <View style={[ Styles.rowFlex, Styles.alignCenter ]}>
+                <TouchableOpacity style={ Styles.contactRequestButton } onPress={() => { this.onRequestButtonPress(RequestType.Streets)}}>
+                  <Image source={require("../assets/images/Streets.png")} style={ Styles.contactRequestImage } />
+                  <Text style={[ Styles.centeredRow, Styles.colorBlack ]}>Streets</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={[ Styles.contactRequestButton, Styles.leftMarginAuto ]} onPress={() => { this.onRequestButtonPress(RequestType.FoodAndBeverages)}}>
+                  <Image source={require("../assets/images/FoodAndBeverages.png")} style={ Styles.contactRequestImage } />
+                  <Text style={[ Styles.centeredRow, Styles.colorBlack ]}>Food and Beverages</Text>
+                </TouchableOpacity>
+              </View>
+              <View style={[ Styles.rowFlex, Styles.alignCenter ]}>
+                <TouchableOpacity style={ Styles.contactRequestButton } onPress={() => { this.onRequestButtonPress(RequestType.Housing)}}>
+                  <Image source={require("../assets/images/Housing.png")} style={ Styles.contactRequestImage } />
+                  <Text style={[ Styles.centeredRow, Styles.colorBlack ]}>Housing</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={[ Styles.contactRequestButton, Styles.leftMarginAuto ]} onPress={() => { this.onRequestButtonPress(RequestType.PublicConcern)}}>
+                  <Image source={require("../assets/images/PublicConcern.png")} style={ Styles.contactRequestImage } />
+                  <Text style={[ Styles.centeredRow, Styles.colorBlack ]}>Public Concern</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
         </View>
-        <View style={ Styles.contactButtonRow }>
-          <TouchableOpacity style={ Styles.contactButton } onPress={() => { this.onRequestButtonPress(RequestType.Streets)}}>
-            <Ionicons name="ios-pause" size={50} style={ Styles.contactButtonImage } />
-            <Text style={ Styles.centeredRow }>Streets</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[ Styles.contactButton, Styles.leftMarginAuto ]} onPress={() => { this.onRequestButtonPress(RequestType.FoodAndBeverages)}}>
-            <Ionicons name="ios-pizza" size={50} style={ Styles.contactButtonImage } />
-            <Text style={ Styles.centeredRow }>Food and beverages</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={ Styles.contactButtonRow }>
-          <TouchableOpacity style={ Styles.contactButton } onPress={() => { this.onRequestButtonPress(RequestType.Housing)}}>
-            <Ionicons name="ios-home" size={50} style={ Styles.contactButtonImage } />
-            <Text style={ Styles.centeredRow }>Housing</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[ Styles.contactButton, Styles.leftMarginAuto ]} onPress={() => { this.onRequestButtonPress(RequestType.PublicConcern)}}>
-            <Ionicons name="ios-information" size={50} style={ Styles.contactButtonImage } />
-            <Text style={ Styles.centeredRow }>Public concern</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+      </ImageBackground>
     );
   }
 }

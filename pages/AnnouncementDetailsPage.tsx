@@ -10,10 +10,12 @@ export class AnnouncementDetailsPage extends React.Component {
     const announcement: Announcement = this.props.navigation.state.params.announcement;
     
     return (
-      <View style={ Styles.appHorizontalMargin }>
-        <Text style={[ Styles.largeFont, Styles.dividerMargin ]}>{ announcement.Subject }</Text>
-        <Text style={ Styles.dividerMargin }>{ formateDateToLocaleString(announcement.Date) }</Text>
-        <Text style={ Styles.dividerMargin }>{ announcement.Details }</Text>
+      <View style={ Styles.appPageStyle }>
+        <View style={[ Styles.pageHeader ]}>
+            <Text style={[ Styles.largeFont, Styles.appHorizontalMargin, Styles.colorBlack ]}>{ announcement.Subject }</Text>
+          </View>
+        <Text style={[ Styles.dividerMargin, Styles.appHorizontalMargin ]}>{ formateDateToLocaleString(announcement.Date) }</Text>
+        <Text style={[ Styles.dividerMargin, Styles.appHorizontalMargin ]}>{ announcement.Details }</Text>
       </View>
     );
   }
