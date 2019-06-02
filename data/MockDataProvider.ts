@@ -5,10 +5,14 @@ import { UserProfile, NotificationSetting } from '../models/UserProfile';
 import { Event, EventType } from '../models/Event';
 import { RequestType } from '../models/Request';
 import { IDataProvider } from './IDataProvider';
+import { AsyncStorage } from 'react-native';
 
 export class MockDataProvider implements IDataProvider {
 
-    userProfile: UserProfile = {
+    private userCredentialKey: string = 'userCredential';
+    private mockUserCredential: string = "mockUserCredential";
+
+    private userProfile: UserProfile = {
         Id: "1",
         Name: "Bryan Ryan O'Brien",
         Email: "throwawayacat@gmail.com",
@@ -27,6 +31,35 @@ export class MockDataProvider implements IDataProvider {
     private promise<T>(f: () => T): Promise<T> {
         return new Promise<T>((resolve) => {
             resolve(f());
+        });
+    }
+
+    type(): string {
+        return "MockDataProvider";
+    }
+
+    logout(): Promise<void> {
+        return AsyncStorage.clear();
+    }
+
+    checkLogin(): Promise<boolean> {
+        return AsyncStorage.getItem(this.userCredentialKey).then((userCredential: string | null) => {
+            if (userCredential) {
+                return true;
+            }
+            return false;
+        })
+    }
+
+    createNewUser(name: string, email: string, password: string, hometown: string, address: string): Promise<boolean> {
+        return AsyncStorage.setItem(this.userCredentialKey, this.mockUserCredential).then(() => {
+            return true;
+        });
+    }
+
+    login(email: string, password: string): Promise<boolean> {
+        return AsyncStorage.setItem(this.userCredentialKey, this.mockUserCredential).then(() => {
+            return true;
         });
     }
     

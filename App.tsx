@@ -8,11 +8,14 @@ import { ContactDetailsPage, ContactDetailsPageProps } from './pages/ContactDeta
 import { AlertsPage, AlertsPageProps } from './pages/AlertsPage';
 import { AnnouncementDetailsPage } from './pages/AnnouncementDetailsPage';
 import { ProfileSettingsPage, ProfileSettingsPageProps } from './pages/ProfileSettingsPage';
+import { LoginPage, LoginPageProps } from './pages/LoginPage';
+import { SignUpPage, SignUpPageProps } from './pages/SignUpPage';
+import { AuthLoadingScreen, AuthLoadingScreenProps } from './pages/AuthLoadingScreen';
 import { IDataProvider } from './data/IDataProvider';
 import { MockDataProvider } from './data/MockDataProvider';
 import { FirebaseDataProvider } from './data/FirebaseDataProvider';
 import { Styles, appMainColor, whiteColor, grayColor } from './Styles';
-import { createBottomTabNavigator, createAppContainer, createStackNavigator, NavigationInjectedProps } from 'react-navigation';
+import { createBottomTabNavigator, createAppContainer, createStackNavigator, createSwitchNavigator, NavigationInjectedProps } from 'react-navigation';
 import { TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -62,7 +65,19 @@ let TabNavigator = createBottomTabNavigator(
   }
 );
 
-let AppNavigator = createStackNavigator(
+let AuthStack = createStackNavigator(
+  {
+    LoginPage: (props: LoginPageProps & NavigationInjectedProps) => <LoginPage {...props} dataProvider={dataProvider} />,
+    SignUpPage: (props: SignUpPageProps & NavigationInjectedProps) => <SignUpPage {...props} dataProvider={dataProvider} />
+  },
+  {
+    defaultNavigationOptions : {
+      header: null
+    }
+  }
+);
+
+let AppStack = createStackNavigator(
   {
     Tabs: TabNavigator,
     HomePage: (props: HomePageProps & NavigationInjectedProps) => <HomePage {...props} dataProvider={dataProvider} />,
@@ -100,10 +115,19 @@ let AppNavigator = createStackNavigator(
   }
 );
 
-const AppContainer = createAppContainer(AppNavigator);
+const AppContainer = createAppContainer(createSwitchNavigator(
+  {
+    AuthLoading: (props: AuthLoadingScreenProps & NavigationInjectedProps) => <AuthLoadingScreen {...props} dataProvider={dataProvider} />,
+    App: AppStack,
+    Auth: AuthStack,
+  },
+  {
+    initialRouteName: 'AuthLoading'
+  }
+));
 
 export default class App extends React.Component {
   render() {
-    return <AppContainer />;
+      return <AppContainer />;
   }
 }

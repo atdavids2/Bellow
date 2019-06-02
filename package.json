@@ -16,7 +16,8 @@
     "react": "16.5.0",
     "react-native": "0.57.1",
     "react-native-calendars": "^1.22.0",
-    "react-native-gesture-handler": "^1.0.12"
+    "react-native-gesture-handler": "^1.0.12",
+    "react-native-keyboard-aware-scroll-view": "^0.8.0"
   },
   "devDependencies": {
     "@types/jest": "^23.3.4",

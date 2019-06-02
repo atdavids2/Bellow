@@ -2,15 +2,24 @@ import { Announcement } from '../models/Announcement'
 import { Contact, ContactType } from '../models/Contact'
 import { Alert, AlertType } from '../models/Alert';
 import { UserProfile, NotificationSetting } from '../models/UserProfile';
-import { Event, EventType } from '../models/Event';
+import { Event } from '../models/Event';
 import { Request, RequestType } from '../models/Request';
 import { IDataProvider } from './IDataProvider';
 import * as firebase from 'firebase';
 import { secrets } from "../secrets";
 
+interface NewUserProfile {
+    Name: string;
+    Email: string;
+    Hometown: string;
+    Addresses: string;
+    OtherHometowns: string;
+    NotificationSettings: object;
+};
+
 export class FirebaseDataProvider implements IDataProvider {
 
-    firebaseConfig = {
+    private firebaseConfig = {
         apiKey: secrets.apiKey,
         authDomain: secrets.authDomain,
         databaseURL: secrets.databaseURL,
@@ -25,6 +34,40 @@ export class FirebaseDataProvider implements IDataProvider {
     private promise<T>(f: () => T): Promise<T> {
         return new Promise<T>((resolve) => {
             resolve(f());
+        });
+    }
+
+    type(): string {
+        return "FirebaseDataProvider";
+    }
+
+    logout(): Promise<void> {
+        return this.firebaseApp.auth().signOut();
+    }
+
+    createNewUser(name: string, email: string, password: string, hometown: string, address: string): Promise<boolean> {
+        return this.firebaseApp.auth().createUserWithEmailAndPassword(email, password).then((userCredential: firebase.auth.UserCredential) => {
+            let user: firebase.User | null = userCredential.user;
+            if (user) {
+                let newUser: NewUserProfile = {
+                    Name: name,
+                    Email: email,
+                    Hometown: hometown,
+                    OtherHometowns: '',
+                    Addresses: address,
+                    NotificationSettings: { "1": true, "2": true, "4": true, "8": true, "16": true}
+                };
+                let userProfileRef = this.firebaseDB.ref("/UserProfile/" + user.uid);
+                userProfileRef.set(newUser);
+                return true;
+            }
+            return false;
+        });
+    }
+
+    login(email: string, password: string): Promise<boolean> {
+        return this.firebaseApp.auth().signInWithEmailAndPassword(email, password).then((userCredential: firebase.auth.UserCredential) => {
+            return true;
         });
     }
     
@@ -78,7 +121,8 @@ export class FirebaseDataProvider implements IDataProvider {
     }
 
     getUserProfile(): Promise<UserProfile> {
-        let userProfileRef = this.firebaseDB.ref("/UserProfile/1");
+        let fbUser = this.firebaseApp.auth().currentUser as firebase.User;
+        let userProfileRef = this.firebaseDB.ref("/UserProfile/" + fbUser.uid);
         return userProfileRef.once("value").then(
             snapshot => {
                 if (snapshot.val()) {
@@ -92,11 +136,12 @@ export class FirebaseDataProvider implements IDataProvider {
                     return obj;
                 }
             }
-        );
+        )
     }
 
     toggleNotificationSetting(alertType: AlertType, enabled: boolean): Promise<boolean> {
-        let userProfileRef = this.firebaseDB.ref("/UserProfile/1");
+        let fbUser = this.firebaseApp.auth().currentUser as firebase.User;
+        let userProfileRef = this.firebaseDB.ref("/UserProfile/" + fbUser.uid);
         userProfileRef.child('/NotificationSettings/' + alertType.toString()).set(enabled);
         return this.promise(() => true);
     }

@@ -34,11 +34,28 @@ export const Styles = StyleSheet.create({
     color: blueColor,
     textDecorationLine: 'underline'
   },
+  extraLargeFont: {
+    fontSize: 25
+  },
   largeFont: {
     fontSize: 20
   },
   mediumFont: {
     fontSize: 15
+  },
+  centeredText: {
+    textAlign: 'center'
+  },
+  alignCenter: {
+    alignSelf: 'center'
+  },
+  loginButton: {
+    width: 100,
+    margin: 10
+  },
+  grayBorder: {
+    borderWidth: 1,
+    borderColor: grayColor,
   },
   rowFlex: {
     flexDirection: 'row'
@@ -56,6 +73,15 @@ export const Styles = StyleSheet.create({
   dividerMargin: {
     marginTop: 10,
     marginBottom: 10
+  },
+  largeDividerMargin: {
+    marginTop: 30,
+    marginBottom: 30
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover',
+    marginTop: -20
   },
   announcementDetailsHeight: {
     maxHeight: 50
@@ -113,6 +139,12 @@ export const Styles = StyleSheet.create({
     color: appMainColor,
     alignSelf: 'center'
   },
+  pngImageStyle: {
+    marginEnd: 10,
+    color: appMainColor,
+    alignSelf: 'center',
+    tintColor: appMainColor
+  },
   contactButtonRow: {
     flexDirection: 'row',
     marginStart: 40,
@@ -141,16 +173,18 @@ export const Styles = StyleSheet.create({
     width: '75%',
     alignSelf: 'center'
   },
-  requestDescription: {
+  singleLineTextInputContainer: {
     borderColor: grayColor,
     borderWidth: 1,
-    height: 200,
-    textAlignVertical: 'top'
   },
-  location: {
+  textInput: {
+    padding: 0,
+    marginHorizontal: 5
+  },
+  multiLineTextInputContainer: {
     borderColor: grayColor,
     borderWidth: 1,
-    height: 25
+    height: 100
   },
   classificationPicker: {
     marginHorizontal: 10

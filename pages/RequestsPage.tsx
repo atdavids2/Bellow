@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, Linking } from 'react-native';
+import { Text, View, TouchableOpacity, Linking, Image } from 'react-native';
 import { NavigationInjectedProps } from 'react-navigation';
 import { RequestType } from '../models/Request';
 import { Styles } from '../Styles';
@@ -40,7 +40,7 @@ export class RequestsPage extends React.Component<NavigationInjectedProps> {
         <Divider style={ Styles.dividerMargin }/>
         <View style={ Styles.contactButtonRow }>
           <TouchableOpacity style={ Styles.contactButton } onPress={() => { this.onRequestButtonPress(RequestType.TreesAndParks)}}>
-            <Ionicons name="ios-bonfire" size={50} style={ Styles.contactButtonImage } />
+            <Image source={require("../assets/images/TreesAndParks.png")} style={ Styles.pngImageStyle } />
             <Text style={ Styles.centeredRow }>Trees and parks</Text>
           </TouchableOpacity>
           <TouchableOpacity style={[ Styles.contactButton, Styles.leftMarginAuto ]} onPress={() => { this.onRequestButtonPress(RequestType.TrafficAndVehicles)}}>

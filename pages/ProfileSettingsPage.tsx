@@ -1,10 +1,10 @@
 import React from 'react';
-import { Text, View, Switch } from 'react-native';
+import { Text, View, Switch, Button } from 'react-native';
 import { Divider } from 'react-native-elements';
 import { IDataProvider } from '../data/IDataProvider';
 import { UserProfile, NotificationSetting } from '../models/UserProfile';
 import { AlertType } from '../models/Alert';
-import { Styles, getAlertColor } from '../Styles';
+import { Styles, getAlertColor, appMainColor } from '../Styles';
 
 export interface ProfileSettingsPageProps {
   dataProvider: IDataProvider;
@@ -52,6 +52,14 @@ export class ProfileSettingsPage extends React.Component<ProfileSettingsPageProp
       userProfile: newProfile
     });
     this.forceUpdate();
+  }
+
+  signout = async () => {
+    const { dataProvider } = this.props;
+
+    dataProvider.logout().then(() => {
+      this.props.navigation.navigate('AuthLoading');
+    });
   }
 
   componentWillMount() {
@@ -133,6 +141,13 @@ export class ProfileSettingsPage extends React.Component<ProfileSettingsPageProp
             <Text> School</Text>
           </View>
           <Switch value={(userProfile.NotificationSettings.find(s => s.AlertType == AlertType.School) as NotificationSetting).Enabled} onValueChange={() => {this.toggleNotificationSetting(AlertType.School)}}></Switch>
+        </View>
+        <Divider style={ Styles.dividerMargin }/>
+        <View style={[ Styles.loginButton, Styles.alignCenter ]}>
+          <Button
+            onPress={ this.signout }
+            title='Sign Out'
+            color={ appMainColor } />
         </View>
       </View> : null
     );
