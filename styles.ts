@@ -2,9 +2,9 @@ import { StyleSheet } from 'react-native';
 import { AlertType } from './models/Alert';
 import { EventType } from './models/Event';
 
-export const appMainColor: string = '#f4511e';
-export const appSecondaryColor: string = '#add8e6';
-export const whiteColor: string = '#fff';
+export const appMainColor: string = '#242565';
+export const appSecondaryColor: string = '#79a2d6';
+export const whiteColor: string = '#ffffff';
 export const blackColor: string = '#000000'
 export const grayColor: string = '#7f7f7f';
 export const blueColor: string = '#0000ff';
@@ -117,6 +117,18 @@ export const Styles = StyleSheet.create({
   profileSettingsButton: {
     marginEnd: 10,
     color: whiteColor
+  },
+  headerLogo: {
+    alignSelf: 'center',
+    width: 40,
+    height: 40,
+    marginLeft: 10
+  },
+  loginPageLogo: {
+    alignSelf: 'center',
+    width: 255,
+    height: 67,
+    marginTop: 25
   },
   contactRequestButton: {
     width: 135,

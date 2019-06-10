@@ -14,9 +14,9 @@ import { AuthLoadingScreen, AuthLoadingScreenProps } from './pages/AuthLoadingSc
 import { IDataProvider } from './data/IDataProvider';
 import { MockDataProvider } from './data/MockDataProvider';
 import { FirebaseDataProvider } from './data/FirebaseDataProvider';
-import { Styles, appMainColor, whiteColor } from './Styles';
+import { Styles, appMainColor, whiteColor, appSecondaryColor } from './Styles';
 import { createBottomTabNavigator, createAppContainer, createStackNavigator, createSwitchNavigator, NavigationInjectedProps } from 'react-navigation';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, Image } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 //let dataProvider: IDataProvider = new MockDataProvider();
@@ -55,7 +55,7 @@ let TabNavigator = createBottomTabNavigator(
       }
     }),
     tabBarOptions: {
-      activeTintColor: '#832406',
+      activeTintColor: appSecondaryColor,
       inactiveTintColor: whiteColor,
       showLabel: false,
       style: {
@@ -95,8 +95,11 @@ let AppStack = createStackNavigator(
       headerTitle: 'Chicago',
       headerRight: (
         <TouchableOpacity onPress={() => { navigation.navigate('ProfileSettingsPage')}}>
-          <Ionicons name="ios-contact" size={50} style={Styles.profileSettingsButton} />
+          <Ionicons name="ios-contact" size={40} style={Styles.profileSettingsButton} />
         </TouchableOpacity>
+      ),
+      headerLeft: (
+        <Image source={require("./assets/images/bello_logo_light_alpha.png")} style={ Styles.headerLogo } />
       ),
       headerStyle: {
         backgroundColor: appMainColor

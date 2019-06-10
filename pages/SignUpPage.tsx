@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TextInput, Button, ImageBackground } from 'react-native';
+import { Text, View, TextInput, Button, ImageBackground, Image } from 'react-native';
 import { Styles, appMainColor } from '../Styles';
 import { IDataProvider } from '../data/IDataProvider';
 import { NavigationInjectedProps, Header } from 'react-navigation';
@@ -51,7 +51,7 @@ export class SignUpPage extends React.Component<SignUpPageProps & NavigationInje
     const { name, email, password, hometown, address, errorMessage } = this.state;
 
     return (
-      <ImageBackground source={require('../assets/images/chicagoBackground.jpg')} style={ Styles.backgroundImage }>
+      //<ImageBackground source={require('../assets/images/chicagoBackground.jpg')} style={ Styles.backgroundImage }>
         <KeyboardAwareScrollView>
           <View style={[ Styles.appPageStyle ]}>
             <View style={ Styles.largeDividerMargin } />
@@ -118,9 +118,10 @@ export class SignUpPage extends React.Component<SignUpPageProps & NavigationInje
                 </View>
               </View>
             </View>
+            <Image source={require("../assets/images/bello_icon_fullname_dark_alpha.png")} style={ Styles.loginPageLogo } />
           </View>
         </KeyboardAwareScrollView>
-      </ImageBackground>
+      //</ImageBackground>
     );
   }
 }
